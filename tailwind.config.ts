@@ -20,6 +20,11 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "Menlo", "monospace"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -53,6 +58,19 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        lime: {
+          50: "#f4ffe6",
+          100: "#e5ffbf",
+          200: "#d4ff80",
+          300: "#c6ff50",
+          400: "#b4ff39",
+          500: "#9ae62d",
+          600: "#7ec424",
+          700: "#5f991c",
+          800: "#4a7a17",
+          900: "#3d6414",
+          950: "#1f370a",
         },
         purple: {
           50: "#f5f3ff",
