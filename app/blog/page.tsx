@@ -41,31 +41,7 @@ function getBlogPosts() {
   const postsDirectory = path.join(process.cwd(), "content/blog")
 
   if (!fs.existsSync(postsDirectory)) {
-    fs.mkdirSync(postsDirectory, { recursive: true })
-
-    const samplePost = `---
-title: "Welcome to the Autonomica Blog"
-description: "Introducing our blog where we'll share insights on AI-driven business operations."
-date: "${new Date().toISOString()}"
-author: "Autonomica Team"
-image: "/images/blog/welcome-post.jpg"
-tags: ["announcement", "ai", "business"]
----
-
-# Welcome to the Autonomica Blog
-
-This is where we'll share our journey of building the world's first fully AI-operated company. Stay tuned for insights, research findings, and updates on our progress.
-
-## What to Expect
-
-- Deep dives into AI technology
-- Case studies on autonomous business operations
-- Updates on our products and services
-- Thought leadership on the future of work
-
-We're excited to have you join us on this journey!
-`
-    fs.writeFileSync(path.join(postsDirectory, "welcome-post.md"), samplePost)
+    return []
   }
 
   const fileNames = fs.readdirSync(postsDirectory)
@@ -120,32 +96,32 @@ export default function BlogPage() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-400" />
             </span>
-            <span className="font-mono text-sm tracking-[0.15em] uppercase">
+            <span className="font-mono font-medium text-sm tracking-[0.15em] uppercase">
               Autonomica
             </span>
           </Link>
           <div className="hidden md:flex items-center gap-8">
             <Link
               href="/"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Home
             </Link>
             <Link
               href="/#mission"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Mission
             </Link>
             <Link
               href="/#systems"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Systems
             </Link>
             <Link
               href="/blog"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-[#f0ece4]"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-[#f0ece4]"
             >
               Blog
             </Link>
@@ -171,10 +147,10 @@ export default function BlogPage() {
       <section className="relative z-10 container mx-auto pt-32 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-xs tracking-[0.2em] text-lime-400">
+            <span className="font-mono font-medium text-xs tracking-[0.2em] text-lime-400">
               [LOG]
             </span>
-            <span className="font-mono text-xs tracking-[0.2em] uppercase text-neutral-400">
+            <span className="font-mono font-medium text-xs tracking-[0.2em] uppercase text-neutral-400">
               Transmissions
             </span>
             <div className="flex-1 h-px bg-white/5" />
@@ -223,7 +199,7 @@ export default function BlogPage() {
                         <div className="flex items-center gap-3 mb-3">
                           <time
                             dateTime={post.date}
-                            className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-400"
+                            className="font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-neutral-400"
                           >
                             {new Date(post.date).toLocaleDateString("en-US", {
                               year: "numeric",
@@ -232,7 +208,7 @@ export default function BlogPage() {
                             })}
                           </time>
                           <span className="text-neutral-500">/</span>
-                          <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-400">
+                          <span className="font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-neutral-400">
                             {post.author}
                           </span>
                         </div>
@@ -246,7 +222,7 @@ export default function BlogPage() {
                           {post.tags?.map((tag) => (
                             <span
                               key={tag}
-                              className="font-mono text-[10px] tracking-[0.1em] uppercase px-2 py-1 rounded border border-white/[0.06] text-neutral-400"
+                              className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase px-2 py-1 rounded border border-white/[0.06] text-neutral-400"
                             >
                               {tag}
                             </span>
@@ -264,10 +240,10 @@ export default function BlogPage() {
               ))
             ) : (
               <div className="text-center py-16">
-                <p className="text-neutral-400 font-mono text-sm">
+                <p className="text-neutral-400 font-mono font-medium text-sm">
                   No transmissions found.
                 </p>
-                <p className="text-neutral-500 font-mono text-xs mt-2">
+                <p className="text-neutral-500 font-mono font-medium text-xs mt-2">
                   Check back soon.
                 </p>
               </div>
@@ -285,32 +261,32 @@ export default function BlogPage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-lime-400" />
               </span>
-              <span className="font-mono text-xs tracking-[0.15em] uppercase text-neutral-400">
+              <span className="font-mono font-medium text-xs tracking-[0.15em] uppercase text-neutral-400">
                 Autonomica
               </span>
             </div>
             <div className="flex items-center gap-6">
               <Link
                 href="/"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Home
               </Link>
               <Link
                 href="/#mission"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Mission
               </Link>
               <Link
                 href="/#systems"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Systems
               </Link>
               <Link
                 href="/blog"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Blog
               </Link>
@@ -358,7 +334,7 @@ export default function BlogPage() {
             </div>
           </div>
           <div className="mt-8 pt-6 border-t border-white/[0.04] text-center">
-            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-500">
+            <span className="font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-neutral-500">
               &copy; {new Date().getFullYear()} Autonomica. All systems
               operational.
             </span>

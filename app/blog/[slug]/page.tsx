@@ -140,32 +140,32 @@ export default async function BlogPostPage({
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-400" />
             </span>
-            <span className="font-mono text-sm tracking-[0.15em] uppercase">
+            <span className="font-mono font-medium text-sm tracking-[0.15em] uppercase">
               Autonomica
             </span>
           </Link>
           <div className="hidden md:flex items-center gap-8">
             <Link
               href="/"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Home
             </Link>
             <Link
               href="/#mission"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Mission
             </Link>
             <Link
               href="/#systems"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Systems
             </Link>
             <Link
               href="/blog"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-[#f0ece4]"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-[#f0ece4]"
             >
               Blog
             </Link>
@@ -192,7 +192,7 @@ export default async function BlogPostPage({
         <div className="max-w-3xl mx-auto">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-lime-400 transition-colors"
+            className="inline-flex items-center gap-2 font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-lime-400 transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back to Blog
@@ -207,7 +207,7 @@ export default async function BlogPostPage({
           <div className="flex items-center gap-3 mb-6">
             <time
               dateTime={post.date}
-              className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-400"
+              className="font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-neutral-400"
             >
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -216,7 +216,7 @@ export default async function BlogPostPage({
               })}
             </time>
             <span className="text-neutral-400">/</span>
-            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-400">
+            <span className="font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-neutral-400">
               {post.author}
             </span>
           </div>
@@ -232,7 +232,7 @@ export default async function BlogPostPage({
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="font-mono text-[10px] tracking-[0.1em] uppercase px-2 py-1 rounded border border-white/[0.06] text-neutral-400"
+                  className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase px-2 py-1 rounded border border-white/[0.06] text-neutral-400"
                 >
                   {tag}
                 </span>
@@ -273,32 +273,32 @@ export default async function BlogPostPage({
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-lime-400" />
               </span>
-              <span className="font-mono text-xs tracking-[0.15em] uppercase text-neutral-400">
+              <span className="font-mono font-medium text-xs tracking-[0.15em] uppercase text-neutral-400">
                 Autonomica
               </span>
             </div>
             <div className="flex items-center gap-6">
               <Link
                 href="/"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Home
               </Link>
               <Link
                 href="/#mission"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Mission
               </Link>
               <Link
                 href="/#systems"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Systems
               </Link>
               <Link
                 href="/blog"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Blog
               </Link>
@@ -346,7 +346,7 @@ export default async function BlogPostPage({
             </div>
           </div>
           <div className="mt-8 pt-6 border-t border-white/[0.04] text-center">
-            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-500">
+            <span className="font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-neutral-500">
               &copy; {new Date().getFullYear()} Autonomica. All systems
               operational.
             </span>

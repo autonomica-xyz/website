@@ -1,6 +1,6 @@
 ---
 title: "Welcome to Autonomica"
-description: "Introducing our company and our mission to build the world's first fully AI-operated business."
+description: "What we're building, why it's weird, and why we're doing it anyway."
 date: "2025-03-10"
 author: "Autonomica Team"
 tags: ["announcement", "ai", "business"]
@@ -8,27 +8,24 @@ tags: ["announcement", "ai", "business"]
 
 # Welcome to Autonomica
 
-We're excited to introduce Autonomica, an experimental company building tools, blueprints, and products to create the world's first fully AI-operated business.
+Autonomica is an experiment disguised as a company. Or a company disguised as an experiment. We're still figuring that part out.
 
-## Our Vision
+The premise is simple: one human founder, zero human employees. Every operational function handled by AI systems. Not chatbots answering tickets, but AI that actually runs things. Strategy, execution, product development, all of it.
 
-At Autonomica, we believe that the future of business is autonomous. We're pioneering a revolutionary business model: a company run by a single human founder with all other operations handled by advanced AI systems.
+If that sounds ambitious to the point of absurdity, good. It probably is. But the only way to find out where the limits are is to push into them.
 
-This isn't just automation—it's true autonomy, where AI makes decisions, executes strategies, and drives growth with minimal human intervention.
+## What we're actually building
 
-## What We're Building
+We need tools to make this work, and those tools don't exist yet. So we're building them:
 
-While working toward our vision of a fully autonomous company, we're creating valuable AI-powered products:
+- An agent management suite for deploying and configuring AI agents at scale
+- A knowledge management platform that gives agents the context they need (context files, RAG pipelines, MCP integrations)
+- Open source blueprints for autonomous operations, plus a marketplace for AI agent configurations
 
-1. **AI Operations Suite**: Agent management suite to easily deploy agents and tweak their configuration.
-2. **Knowledgable Agents**: Knowledge management platform for AI applications, from context files to rag and mcp.
-3. **Blueprints and Marketplace**: Open source blueprints on everything from incorporation to management and marketplace for AI employees.
+Each of these exists because we hit a wall and had to build our way through it. If they're useful to us, they're probably useful to other people too.
 
-## Join Us
+## Why publish any of this
 
-We're at the beginning of an exciting journey, and we invite you to join us. Subscribe to our newsletter to stay updated on our progress and get early access to our products.
+We could do this quietly. But the whole point is to figure out whether autonomous business actually works, and that's more valuable as a shared finding than a trade secret.
 
-Thank you for your interest in Autonomica!
-\`\`\`
-
-Let's also make sure the ImageWithFallback component handles missing images gracefully:
+Everything we learn gets documented. The wins, the dead ends, the stuff that looked smart until it wasn't. Subscribe if you want to follow along.

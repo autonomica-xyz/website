@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ToastProvider } from "@/components/toast-provider"
 import GoogleAnalytics from "@/components/google-analytics"
+import Script from "next/script"
 import { Suspense } from "react"
 
 const syne = Syne({
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${syne.variable} ${figtree.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-body antialiased">
@@ -47,6 +49,12 @@ export default function RootLayout({
             <GoogleAnalytics />
           </Suspense>
         </ThemeProvider>
+        <Script
+          defer
+          data-domain="autonomica.xyz"
+          src="https://analytics.cypherpunk.cloud/js/script.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )

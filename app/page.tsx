@@ -6,7 +6,7 @@ import { Reveal } from "@/components/reveal"
 
 function StatusBadge({ children, active = false }: { children: React.ReactNode; active?: boolean }) {
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-lime-400/20 bg-lime-400/5 font-mono text-[11px] tracking-[0.15em] uppercase text-lime-400">
+    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-lime-400/20 bg-lime-400/5 font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-lime-400">
       {active && (
         <span className="relative flex h-1.5 w-1.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
@@ -21,8 +21,8 @@ function StatusBadge({ children, active = false }: { children: React.ReactNode; 
 function SectionLabel({ number, label }: { number: string; label: string }) {
   return (
     <div className="flex items-center gap-3 mb-16">
-      <span className="font-mono text-xs tracking-[0.2em] text-lime-400">[{number}]</span>
-      <span className="font-mono text-xs tracking-[0.2em] uppercase text-neutral-400">{label}</span>
+      <span className="font-mono font-medium text-xs tracking-[0.2em] text-lime-400">[{number}]</span>
+      <span className="font-mono font-medium text-xs tracking-[0.2em] uppercase text-neutral-400">{label}</span>
       <div className="flex-1 h-px bg-white/5" />
     </div>
   )
@@ -122,39 +122,39 @@ export default function Home() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-400" />
             </span>
-            <span className="font-mono text-sm tracking-[0.15em] uppercase">
+            <span className="font-mono font-medium text-sm tracking-[0.15em] uppercase">
               Autonomica
             </span>
           </Link>
           <div className="hidden md:flex items-center gap-8">
             <Link
               href="#mission"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Mission
             </Link>
             <Link
               href="#systems"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Systems
             </Link>
             <Link
               href="#experiment"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Experiment
             </Link>
             <Link
               href="/blog"
-              className="font-mono text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono font-medium text-xs tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
             >
               Blog
             </Link>
             <NavButton
               eventName="join_waitlist_click"
               eventCategory="navigation"
-              className="bg-lime-400 text-[#050505] hover:bg-lime-300 font-mono text-xs tracking-[0.1em] uppercase px-4 py-2 h-auto rounded"
+              className="bg-lime-400 text-[#050505] hover:bg-lime-300 font-mono font-medium text-xs tracking-[0.1em] uppercase px-4 py-2 h-auto rounded"
               href="#join"
             >
               Enter
@@ -212,7 +212,7 @@ export default function Home() {
             <NavButton
               eventName="learn_more_click"
               eventCategory="navigation"
-              className="bg-lime-400 text-[#050505] hover:bg-lime-300 font-mono text-xs tracking-[0.1em] uppercase px-6 py-3 h-auto rounded font-semibold"
+              className="bg-lime-400 text-[#050505] hover:bg-lime-300 font-mono font-medium text-xs tracking-[0.1em] uppercase px-6 py-3 h-auto rounded font-semibold"
               href="#mission"
             >
               Explore
@@ -222,7 +222,7 @@ export default function Home() {
               eventName="join_mission_click"
               eventCategory="navigation"
               variant="outline"
-              className="border-white/10 text-[#f0ece4] hover:bg-white/5 font-mono text-xs tracking-[0.1em] uppercase px-6 py-3 h-auto rounded"
+              className="border-white/10 text-[#f0ece4] hover:bg-white/5 font-mono font-medium text-xs tracking-[0.1em] uppercase px-6 py-3 h-auto rounded"
               href="#join"
             >
               Join the Experiment
@@ -232,7 +232,7 @@ export default function Home() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hero-fade-4">
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-neutral-400">
+          <span className="font-mono font-medium text-[11px] tracking-[0.2em] uppercase text-neutral-400">
             Scroll
           </span>
           <div className="w-px h-8 bg-gradient-to-b from-neutral-600 to-transparent" />
@@ -281,7 +281,7 @@ export default function Home() {
                 {pillars.map((item, i) => (
                   <Reveal key={i} delay={120 + i * 80}>
                     <div className="group">
-                      <span className="font-mono text-[11px] tracking-[0.25em] text-lime-400/40 block mb-4">
+                      <span className="font-mono font-medium text-[11px] tracking-[0.25em] text-lime-400/40 block mb-4">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <h4 className="font-display text-xl md:text-2xl mb-2 group-hover:text-lime-400 transition-colors duration-300">
@@ -330,7 +330,7 @@ export default function Home() {
                 <div className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-12 md:py-16 border-b border-white/[0.06]">
                   {/* Number */}
                   <div className="md:col-span-1">
-                    <span className="font-mono text-sm tracking-[0.1em] text-neutral-500 group-hover:text-lime-400/60 transition-colors duration-500">
+                    <span className="font-mono font-medium text-sm tracking-[0.1em] text-neutral-500 group-hover:text-lime-400/60 transition-colors duration-500">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -352,7 +352,7 @@ export default function Home() {
                         <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${product.dotColor}`} />
                       </span>
                       <span
-                        className={`font-mono text-[10px] tracking-[0.15em] uppercase ${product.statusColor}`}
+                        className={`font-mono font-medium text-[11px] tracking-[0.15em] uppercase ${product.statusColor}`}
                       >
                         {product.status}
                       </span>
@@ -392,7 +392,7 @@ export default function Home() {
 
           {/* Boot log */}
           <Reveal>
-            <div className="font-mono text-xs text-neutral-500 space-y-1 mb-10 pl-1">
+            <div className="font-mono font-medium text-xs text-neutral-500 space-y-1 mb-10 pl-1">
               <p>&gt; INITIALIZING AUTONOMICA.SYS...</p>
               <p>&gt; LOADING MODULES...</p>
               <p>
@@ -422,7 +422,7 @@ export default function Home() {
                           : "border border-white/20"
                       }`}
                     />
-                    <span className="font-mono text-xs tracking-[0.15em] text-neutral-400 uppercase">
+                    <span className="font-mono font-medium text-xs tracking-[0.15em] text-neutral-400 uppercase">
                       Phase {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -440,7 +440,7 @@ export default function Home() {
                   {/* Current indicator */}
                   <div className="md:col-span-3 md:text-right">
                     {phase.current && (
-                      <span className="font-mono text-[10px] tracking-[0.2em] text-lime-400 uppercase">
+                      <span className="font-mono font-medium text-[11px] tracking-[0.2em] text-lime-400 uppercase">
                         Current
                       </span>
                     )}
@@ -488,32 +488,32 @@ export default function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-lime-400" />
               </span>
-              <span className="font-mono text-xs tracking-[0.15em] uppercase text-neutral-400">
+              <span className="font-mono font-medium text-xs tracking-[0.15em] uppercase text-neutral-400">
                 Autonomica
               </span>
             </div>
             <div className="flex items-center gap-6">
               <Link
                 href="#mission"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Mission
               </Link>
               <Link
                 href="#systems"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Systems
               </Link>
               <Link
                 href="#experiment"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Experiment
               </Link>
               <Link
                 href="/blog"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+                className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
               >
                 Blog
               </Link>
@@ -561,7 +561,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 pt-6 border-t border-white/[0.04] text-center">
-            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-500">
+            <span className="font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-neutral-500">
               &copy; {new Date().getFullYear()} Autonomica. All systems
               operational.
             </span>

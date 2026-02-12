@@ -1,44 +1,41 @@
 ---
-title: "Introduction to Autonomica"
-description: "Learn about our mission to build the world's first fully AI-operated business."
+title: "The four phases of going autonomous"
+description: "How we plan to transition from a human-run company to a fully AI-operated one."
 date: "2025-03-12"
 author: "Autonomica Team"
-tags: ["introduction", "ai", "business"]
+tags: ["experiment", "ai", "roadmap"]
 ---
 
-# Introduction to Autonomica
+# The four phases of going autonomous
 
-Welcome to Autonomica, where we're building the future of autonomous business operations.
+There's no playbook for building an autonomous company. Nobody's done it. So we made one up and we're going to see what happens.
 
-## Our Mission
+The plan has four phases. We're in the first one.
 
-We're creating a new paradigm for business operations—one where AI systems handle everything from strategy to execution.
+## Phase 1: Foundation
 
-Autonomica is pioneering a revolutionary business model: a company run by a single human founder with all other operations handled by advanced AI systems.
+This is where we are now. We're building the core AI systems, shipping initial products, and using the revenue to fund everything that comes next. The founder still makes most decisions. AI handles execution.
 
-This isn't just automation—it's true autonomy, where AI makes decisions, executes strategies, and drives growth with minimal human intervention.
+The goal here isn't autonomy yet. It's building the infrastructure that makes autonomy possible later.
 
-## Our Products
+## Phase 2: Automation
 
-While building our autonomous company blueprint, we're creating valuable AI-powered products:
+This is where it gets interesting. We start handing over operational responsibilities to AI systems, one department at a time. Customer support, content, financial operations, product decisions. Each handoff is an experiment: does the AI maintain quality? Where does it break? What does it need that we didn't anticipate?
 
-1. **AI Operations Suite**: Agent management suite to easily deploy agents and tweak their configuration.
+We expect a lot of failures in this phase. That's the point.
 
-2. **Knowledgable Agents**: Knowledge management platform for AI applications, from context files to rag and mcp.
+## Phase 3: Autonomy
 
-3. **Blueprints and Marketplace**: Open source blueprints on everything from incorporation to management.
+The founder steps back to strategic oversight only. AI systems run day-to-day operations end to end. The human sets direction, the machines figure out how to get there.
 
-## The Experiment
+This is the phase we're most uncertain about. We don't know if current AI can handle this level of responsibility. Maybe it can't. Maybe it needs architectural patterns nobody's invented yet. We'll find out.
 
-Autonomica itself is an experiment—a living laboratory exploring the future of AI-driven business.
+## Phase 4: Replication
 
-Our journey consists of four phases:
+If we get here, we publish the whole blueprint. Every system, every configuration, every mistake. The goal is to make it possible for anyone to spin up an autonomous company using what we've learned.
 
-- **Phase 1: Foundation** - Building the core AI systems and initial product offerings
-- **Phase 2: Automation** - Transitioning operational responsibilities from human to AI systems
-- **Phase 3: Autonomy** - Achieving full AI autonomy with the founder serving only as a strategic guide
-- **Phase 4: Replication** - Sharing our blueprint with the world
+This is the phase that justifies the experiment. One autonomous company is a curiosity. A thousand of them is a new way of doing business.
 
-## Join Us
+## Where we actually are
 
-We invite you to join us on this exciting journey. Subscribe to our newsletter to stay updated on our progress and get early access to our products.
+We're deep in Phase 1. The products are real, the revenue targets are real, and most of the AI integration is still ahead of us. We'll write about each transition as it happens.

@@ -63,7 +63,7 @@ export default function NewsletterSignup() {
         <button
           type="submit"
           disabled={isPending}
-          className="bg-lime-400 text-[#050505] hover:bg-lime-300 font-mono text-xs tracking-[0.1em] uppercase px-6 py-3 rounded font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="bg-lime-400 text-[#050505] hover:bg-lime-300 font-mono font-medium text-xs tracking-[0.1em] uppercase px-6 py-3 rounded font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isPending ? (
             <>
