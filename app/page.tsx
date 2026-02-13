@@ -37,9 +37,9 @@ export default function Home() {
       dotColor: "bg-amber-400",
     },
     {
-      title: "Knowledgeable Agents",
+      title: "Agents Managing Agents",
       description:
-        "Knowledge management platform for AI applications. From context files to RAG pipelines and MCP integrations, giving every agent the context it needs.",
+        "Hierarchical agent orchestration where AI agents deploy, monitor, and coordinate other agents. Scaling agentic work without scaling human oversight.",
       status: "TESTING",
       statusColor: "text-lime-400",
       dotColor: "bg-lime-400",

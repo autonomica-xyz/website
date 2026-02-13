@@ -33,13 +33,13 @@ const products = [
   },
   {
     number: "02",
-    title: "Knowledgeable Agents",
+    title: "Agents Managing Agents",
     status: "TESTING",
     active: true,
     paragraphs: [
-      "An AI agent without context is just a language model guessing. It doesn't know your codebase, your customers, your internal processes, or the decision you made last Tuesday about pricing. Knowledgeable Agents is a platform for giving every agent the context it needs to actually be useful.",
-      "The system manages context files (structured documents that agents read before acting), RAG pipelines (so agents can search through your documentation and history), and MCP integrations (connecting agents to live data sources like databases, APIs, and monitoring tools). Think of it as managed knowledge infrastructure: you define what each agent should know, and the platform handles retrieval, freshness, and format.",
-      "We're in active testing right now, using it to feed context to our own operational agents. The difference between an agent with good context and one without is the difference between a new hire who read the handbook and one who didn't. Same underlying capability, wildly different usefulness.",
+      "One agent can handle a task. But running a business means hundreds of tasks happening concurrently, with dependencies between them, and somebody needs to decide what runs when, catch failures, reallocate work, and spin up new agents when load spikes. That somebody shouldn't be a human refreshing a dashboard. It should be another agent.",
+      "Agents Managing Agents is our orchestration layer: supervisor agents that deploy worker agents, monitor their output, intervene when things go sideways, and scale capacity up or down based on actual demand. A supervisor agent doesn't just dispatch tasks. It evaluates whether the worker's output met the criteria, decides whether to retry or escalate, and adjusts the worker's configuration based on patterns it observes over time. The hierarchy can go multiple levels deep. A department-level agent coordinates team-level agents, which each manage individual task agents.",
+      "This is how you get from \"one founder with some AI tools\" to \"one founder running an entire company.\" You don't hire more people. You give your best agents the ability to manage other agents. We're testing this internally now, and the results are clear: the bottleneck in scaling agentic work was never the agents themselves. It was the human trying to orchestrate all of them.",
     ],
   },
   {
