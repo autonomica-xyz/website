@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/mission", label: "Mission" },
   { href: "/systems", label: "Systems" },
   { href: "/blog", label: "Blog" },
+  { href: "https://github.com/autonomica-xyz", label: "Code", external: true },
 ] as const
 
 export default function SiteNav({ currentPage }: { currentPage?: string }) {
@@ -24,10 +25,11 @@ export default function SiteNav({ currentPage }: { currentPage?: string }) {
           </span>
         </Link>
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map(({ href, label }) => (
+          {navLinks.map(({ href, label, ...rest }) => (
             <Link
               key={href}
               href={href}
+              {...("external" in rest && rest.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className={`font-mono font-medium text-xs tracking-[0.1em] uppercase transition-colors ${
                 currentPage === label.toLowerCase()
                   ? "text-[#f0ece4]"

@@ -33,6 +33,14 @@ export default function SiteFooter() {
             >
               Blog
             </Link>
+            <Link
+              href="https://github.com/autonomica-xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+            >
+              Code
+            </Link>
           </div>
           <div className="flex items-center gap-3">
             <Link
