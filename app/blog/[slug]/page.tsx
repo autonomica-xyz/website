@@ -84,11 +84,11 @@ export async function generateMetadata({
     openGraph: {
       title: `${post.title} - Autonomica Blog`,
       description: post.description,
-      url: `https://autonomica.ai/blog/${post.slug}`,
+      url: `https://autonomica.xyz/blog/${post.slug}`,
       siteName: "Autonomica",
       images: [
         {
-          url: post.image || "https://autonomica.ai/og-image.jpg",
+          url: post.image || "https://autonomica.xyz/og-image.jpg",
           width: 1200,
           height: 630,
           alt: post.title,
@@ -105,7 +105,7 @@ export async function generateMetadata({
       title: `${post.title} - Autonomica Blog`,
       description: post.description,
       creator: "@AutonomicaAI",
-      images: [post.image || "https://autonomica.ai/og-image.jpg"],
+      images: [post.image || "https://autonomica.xyz/og-image.jpg"],
     },
   }
 }

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Systems - Autonomica",
     description:
       "The tools we build as we need them. AI operations suite, knowledgeable agents, and open source blueprints for autonomous business.",
-    url: "https://autonomica.ai/systems",
+    url: "https://autonomica.xyz/systems",
     siteName: "Autonomica",
   },
 }

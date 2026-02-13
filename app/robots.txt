@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://autonomica.ai/sitemap.xml
+Sitemap: https://autonomica.xyz/sitemap.xml

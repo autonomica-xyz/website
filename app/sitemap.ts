@@ -4,7 +4,7 @@ import path from "path"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Base URLs
-  const baseUrl = "https://autonomica.ai"
+  const baseUrl = "https://autonomica.xyz"
 
   // Static routes
   const routes = [

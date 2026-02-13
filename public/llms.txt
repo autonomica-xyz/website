@@ -1,0 +1,40 @@
+# Autonomica
+
+> The business that builds itself. One founder, infinite AI.
+
+Autonomica is building the world's first fully AI-operated business. A single human founder sets direction while AI systems own the entire operational loop — from intake to execution to review. We build the tools we need, publish what we learn as open-source blueprints, and fund the mission through products that serve others on the same path.
+
+## Pages
+
+- [Home](https://autonomica.xyz/): Overview of Autonomica's mission, four pillars, products, roadmap, and newsletter signup.
+- [Mission](https://autonomica.xyz/mission): Deep dive into the four pillars — autonomous operations, AI decision making, scalable growth, and open blueprints.
+- [Systems](https://autonomica.xyz/systems): The three products we're building — AI Operations Suite, Agents Managing Agents, and Blueprints & Marketplace.
+- [Blog](https://autonomica.xyz/blog): Updates and insights from inside the experiment.
+
+## Markdown Versions
+
+Append `.md` to any page URL to get a markdown version:
+
+- [Home](https://autonomica.xyz/.md)
+- [Mission](https://autonomica.xyz/mission.md)
+- [Systems](https://autonomica.xyz/systems.md)
+- [Blog](https://autonomica.xyz/blog.md)
+- [Blog posts](https://autonomica.xyz/blog/{slug}.md)
+
+## Products
+
+- **AI Operations Suite** (IN DEVELOPMENT): Agent management dashboard for deploying, configuring, and monitoring AI agents at scale.
+- **Agents Managing Agents** (TESTING): Hierarchical orchestration where supervisor agents deploy, monitor, and coordinate worker agents.
+- **Blueprints & Marketplace** (PLANNED): Open-source runnable configurations — agent definitions, prompt templates, and deployment scripts others can fork and adapt.
+
+## Roadmap
+
+- Phase 01 — Foundation (CURRENT): Building core AI systems and initial products.
+- Phase 02 — Automation: Transitioning operations from human to AI, one department at a time.
+- Phase 03 — Autonomy: Full AI autonomy with the founder as strategic guide.
+- Phase 04 — Replication: Sharing the blueprint for others to create autonomous companies.
+
+## Contact
+
+- Website: https://autonomica.xyz
+- GitHub: https://github.com/autonomica-xyz

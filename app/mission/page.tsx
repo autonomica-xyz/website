@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Mission - Autonomica",
     description:
       "One founder, infinite AI. Autonomica is building the first company where AI owns the operational loop, not just assists with it.",
-    url: "https://autonomica.ai/mission",
+    url: "https://autonomica.xyz/mission",
     siteName: "Autonomica",
   },
 }

@@ -16,11 +16,11 @@ export const metadata: Metadata = {
     title: "Autonomica Blog - Insights on AI-Driven Business",
     description:
       "Explore the latest insights, research, and updates on AI-driven business operations and autonomous companies.",
-    url: "https://autonomica.ai/blog",
+    url: "https://autonomica.xyz/blog",
     siteName: "Autonomica",
     images: [
       {
-        url: "https://autonomica.ai/og-image.jpg",
+        url: "https://autonomica.xyz/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Autonomica Blog",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description:
       "Explore the latest insights, research, and updates on AI-driven business operations and autonomous companies.",
     creator: "@AutonomicaAI",
-    images: ["https://autonomica.ai/og-image.jpg"],
+    images: ["https://autonomica.xyz/og-image.jpg"],
   },
 }
 
