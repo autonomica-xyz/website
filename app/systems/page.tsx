@@ -87,7 +87,7 @@ export default function SystemsPage() {
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-lg md:text-xl leading-relaxed mb-6">
-                Autonomica builds products that solve our own problems first. Every tool listed here exists because we hit a wall running our AI-operated company and had to build something to get past it. They fund the mission and serve others on the same path.
+                Autonomica builds products that solve our own problems first. Every tool listed here exists because we hit a wall running our AI-operated company and had to build something to get past it. They pay the bills and might be useful to people doing something similar.
               </p>
             </Reveal>
             <Reveal delay={200}>

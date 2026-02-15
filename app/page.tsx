@@ -11,15 +11,15 @@ export default function Home() {
   const pillars = [
     {
       title: "Autonomous Operations",
-      desc: "AI systems that own the entire operational loop, from intake to execution to review.",
+      desc: "AI handles work end to end. No human in the middle approving things.",
     },
     {
       title: "AI Decision Making",
-      desc: "Strategic decisions driven by advanced reasoning, not human bottlenecks.",
+      desc: "The AI makes real decisions, not recommendations a human has to sign off on.",
     },
     {
       title: "Scalable Growth",
-      desc: "Infrastructure that compounds without headcount. One founder, unlimited throughput.",
+      desc: "Adding capacity means spinning up more agents, not hiring more people.",
     },
     {
       title: "Open Blueprints",
@@ -31,7 +31,7 @@ export default function Home() {
     {
       title: "AI Operations Suite",
       description:
-        "Agent management suite to deploy and configure AI agents at scale. Monitor, adjust, and orchestrate autonomous workflows across every layer of the business.",
+        "A control panel for running dozens of AI agents across a business. See what each one is doing, adjust configurations without redeploying, and kill misbehaving ones.",
       status: "IN.DEV",
       statusColor: "text-amber-400",
       dotColor: "bg-amber-400",
@@ -39,7 +39,7 @@ export default function Home() {
     {
       title: "Agents Managing Agents",
       description:
-        "Hierarchical agent orchestration where AI agents deploy, monitor, and coordinate other agents. Scaling agentic work without scaling human oversight.",
+        "Supervisor agents that manage worker agents. Instead of a human coordinating everything, an AI agent does the dispatching, monitors output, and handles failures.",
       status: "TESTING",
       statusColor: "text-lime-400",
       dotColor: "bg-lime-400",
@@ -47,7 +47,7 @@ export default function Home() {
     {
       title: "Blueprints & Marketplace",
       description:
-        "Open source blueprints for autonomous operations. A marketplace where AI employees earn when you don't need them, and scale when you do.",
+        "Open source configs and templates for running AI agents in production. Fork them, adapt them, deploy them.",
       status: "PLANNED",
       statusColor: "text-neutral-400",
       dotColor: "bg-neutral-500",
@@ -58,25 +58,25 @@ export default function Home() {
     {
       title: "Foundation",
       description:
-        "Building the core AI systems and initial product offerings that fund future development.",
+        "We build the AI stack and ship products that pay for what comes next.",
       current: true,
     },
     {
       title: "Automation",
       description:
-        "Transitioning operational responsibilities from human to AI systems, one department at a time.",
+        "Functions transfer from human to AI, one at a time, starting with the most repetitive.",
       current: false,
     },
     {
       title: "Autonomy",
       description:
-        "Achieving full AI autonomy with the founder serving only as a strategic guide.",
+        "The AI runs the company. The founder steps back to strategy and edge cases.",
       current: false,
     },
     {
       title: "Replication",
       description:
-        "Sharing the blueprint with the world. Enabling others to create their own autonomous companies.",
+        "We publish everything so someone else can do this without starting from scratch.",
       current: false,
     },
   ]
@@ -118,10 +118,9 @@ export default function Home() {
 
           {/* Subtitle */}
           <p className="hero-fade-3 text-lg md:text-xl text-neutral-300 max-w-2xl mb-12 leading-relaxed font-body">
-            A business wrapped in an experiment wrapped in a business. We create
-            autonomous companies and the tools to get there &mdash; discovering
-            the best ways to operate as an AI-run business, building what we need
-            on the fly.
+            A business wrapped in an experiment wrapped in a business. We figure
+            out how to run a company with AI by actually doing it, and we build
+            whatever tools we need along the way.
           </p>
 
           {/* CTAs */}
@@ -178,16 +177,15 @@ export default function Home() {
               </Reveal>
               <Reveal delay={100}>
                 <p className="text-neutral-300 text-lg leading-relaxed mb-6">
-                  Autonomica is pioneering a new business model: a company run by
-                  a single human founder with all operations handled by AI
-                  systems.
+                  Autonomica is one person and a lot of AI. The founder sets
+                  direction. AI handles everything else.
                 </p>
               </Reveal>
               <Reveal delay={200}>
                 <p className="text-neutral-300 text-lg leading-relaxed">
-                  This isn&apos;t automation &mdash; it&apos;s true autonomy. AI
-                  makes decisions, executes strategies, and drives growth. The
-                  founder sets the vision. The machines do the rest.
+                  AI doesn&apos;t wait for a human to approve things. It decides,
+                  acts, and course-corrects on its own. The founder sets the
+                  vision. The machines do the rest.
                 </p>
               </Reveal>
             </div>
@@ -409,8 +407,8 @@ export default function Home() {
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-lg leading-relaxed mb-12">
-                Be part of our journey. Get updates on our progress and early
-                access to the tools we build.
+                We send updates when something actually ships or when something
+                interesting breaks. No fluff.
               </p>
             </Reveal>
             <Reveal delay={200}>

@@ -9,11 +9,11 @@ import NewsletterSignup from "@/components/newsletter-signup"
 export const metadata: Metadata = {
   title: "Mission - Autonomica",
   description:
-    "One founder, infinite AI. Autonomica is building the first company where AI owns the operational loop, not just assists with it.",
+    "One founder, infinite AI. At most companies, AI helps humans do the work. At Autonomica, AI does the work.",
   openGraph: {
     title: "Mission - Autonomica",
     description:
-      "One founder, infinite AI. Autonomica is building the first company where AI owns the operational loop, not just assists with it.",
+      "One founder, infinite AI. At most companies, AI helps humans do the work. At Autonomica, AI does the work.",
     url: "https://autonomica.xyz/mission",
     siteName: "Autonomica",
   },
@@ -90,7 +90,7 @@ export default function MissionPage() {
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-lg md:text-xl leading-relaxed mb-6">
-                Autonomica is building the first company where AI doesn't just assist operations, it owns them. A single human founder sets direction. Everything else, from product development to customer operations to financial management, runs on AI systems that make decisions, execute, and improve on their own.
+                At most companies, AI helps humans do the work. At Autonomica, AI does the work. A single human founder sets direction. Everything else, from product development to customer operations to financial management, runs on AI systems that make decisions, execute, and improve on their own.
               </p>
             </Reveal>
             <Reveal delay={200}>
