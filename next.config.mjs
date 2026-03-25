@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ["@leads/supabase-backend"],
   typescript: {
     ignoreBuildErrors: true,
   },
