@@ -40,7 +40,7 @@ Use an almost invisible lime radial glow and a sparse dot grid to create atmosph
 - **IBM Plex Sans 400–600:** body copy and functional descriptions.
 - **IBM Plex Mono 400–600:** labels, status, timestamps, metadata, CTAs, and system output.
 
-Hero typography is intentionally large and tight: roughly `clamp(64px, 8.2vw, 122px)`, line-height `.84`, and letter-spacing around `-.065em`. Body copy stays open at `1.5–1.6` line-height.
+Hero typography is intentionally large and tight. For the selected operating-system headline, use roughly `clamp(58px, 6.8vw, 98px)`, line-height `.86`, and letter-spacing around `-.06em`; reduce it to approximately `50–60px` on phones. Body copy stays open at `1.5–1.6` line-height.
 
 ### Shape and spacing
 
