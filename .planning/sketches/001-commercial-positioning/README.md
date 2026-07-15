@@ -32,10 +32,9 @@ Preserve the dark industrial/editorial visual system, acid-lime primary accent, 
 
 ## Content Assumptions
 
-- “Autonomous websites” and “Research agents” are the user-selected compact showcase labels.
+- “Autonomous websites,” “Research agents,” and “Local models” are the user-selected compact showcase labels.
 - Active application building and local-model experiments on constrained hardware were confirmed by the user.
 - Distributed transcription orchestration remains a confirmed built system but is no longer a featured Variant A label. Its description is grounded in the local `workqueue` repository and timestamped transcription worker.
-- AutoDevOps is drawn from its working local repository.
 - "Operations Audit," "System Build Sprint," and "Managed Autonomy" are proposed service packages, not confirmed offers.
 - No performance, customer, or revenue claims are introduced.
 

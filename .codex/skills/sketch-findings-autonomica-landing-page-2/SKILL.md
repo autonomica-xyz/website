@@ -8,7 +8,7 @@ description: Validated Systems Lab design decisions, CSS patterns, and narrative
 
 Autonomica is a systems lab building the operating system for an autonomous company. The site must retain the feeling of a public research experiment while making built systems and scoped services legible. Systems and services are outputs of the experiment, not replacements for the mission.
 
-Reference points: the existing dark editorial Autonomica identity, industrial control panels, independent research journals, system logs, autonomous websites, research agents, AutoDevOps, application building, and local models pushed on constrained hardware.
+Reference points: the existing dark editorial Autonomica identity, industrial control panels, independent research journals, system logs, autonomous websites, research agents, application building, and local models on constrained hardware.
 
 Sketch sessions wrapped: 2026-07-15
 </context>

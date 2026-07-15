@@ -206,9 +206,8 @@
     .product-grid-a { display: grid; grid-template-columns: repeat(12,1fr); border: 1px solid var(--line); }
     .product-card-a { position: relative; min-height: 340px; padding: 30px; overflow: hidden; border-right: 1px solid var(--line); background: rgba(255,255,255,.012); }
     .product-card-a:nth-child(1) { grid-column: span 5; }
-    .product-card-a:nth-child(2) { grid-column: span 7; border-right: 0; }
-    .product-card-a:nth-child(3) { grid-column: span 7; border-top: 1px solid var(--line); }
-    .product-card-a:nth-child(4) { grid-column: span 5; border-top: 1px solid var(--line); border-right: 0; }
+    .product-card-a:nth-child(2) { grid-column: span 4; }
+    .product-card-a:nth-child(3) { grid-column: span 3; border-right: 0; }
     .product-card-a::after { content: attr(data-number); position: absolute; right: 10px; bottom: -36px; color: rgba(255,255,255,.028); font: 700 150px/1 var(--font-display); }
     .product-card-a:hover { background: rgba(184,255,63,.035); }
     .product-status { display: flex; align-items: center; gap: 8px; margin-bottom: 70px; color: var(--acid); font: 500 9px/1 var(--font-mono); text-transform: uppercase; letter-spacing: .1em; }
@@ -510,7 +509,7 @@
             <div class="section-kicker eyebrow">Systems from the experiment</div>
             <div class="a-products-head">
               <h2 class="section-title" data-annotate>The things we had to build.</h2>
-              <p class="body-large">The company is the test bed. We build applications, run them for real, and use what breaks to guide the next experiment. These are four active lines of work.</p>
+              <p class="body-large">The company is the test bed. We build applications, run them for real, and use what breaks to guide the next experiment. These are three active lines of work.</p>
             </div>
             <div class="product-grid-a">
               <article class="product-card-a" data-number="01" data-annotate>
@@ -526,15 +525,9 @@
                 <button class="text-link" type="button" onclick="notify('The research agents detail would open here.')">Inspect the system ↗</button>
               </article>
               <article class="product-card-a" data-number="03">
-                <div class="product-status"><span class="status-dot"></span> Infrastructure operations</div>
-                <h3>AutoDevOps</h3>
-                <p>An autonomous SRE system that watches infrastructure, investigates incidents, passes fixes through an independent review, and verifies the result.</p>
-                <button class="text-link" type="button" onclick="notify('AutoDevOps project detail would open here.')">View system ↗</button>
-              </article>
-              <article class="product-card-a" data-number="04">
                 <div class="product-status"><span class="status-dot"></span> Local inference</div>
-                <h3>Local models on shitty hardware</h3>
-                <p>Experiments in getting useful local inference out of modest, old, and otherwise inconvenient machines. Measure first, then tune the whole stack.</p>
+                <h3>Local models</h3>
+                <p>We test how far local models can go on inexpensive, power-constrained machines, then tune the full stack around the limits.</p>
                 <button class="text-link" type="button" onclick="notify('The local model build notes would open here.')">Read the build notes ↗</button>
               </article>
             </div>

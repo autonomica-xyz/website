@@ -29,9 +29,9 @@ This is the bridge between the experiment and the commercial content.
 
 ### Systems from the experiment
 
-Use one shared bordered grid with editorially uneven spans rather than isolated floating cards. The selected desktop layout uses alternating `5 / 7` and `7 / 5` rows across a twelve-column grid. Each module has a functional domain, concrete description, and a single restrained link.
+Use one shared bordered grid with editorially uneven spans rather than isolated floating cards. The selected desktop proportion is `5 / 4 / 3` across a twelve-column grid. Each module has a functional domain, concrete description, and a single restrained link.
 
-Lead with work that proves the autonomous-company experiment: autonomous websites, research agents, AutoDevOps, and local models pushed on shitty hardware. Keep the candid hardware phrasing; it is more specific to the lab than generic “edge AI” language. Verify system scope and current operating status before production publication.
+Lead with work that proves the autonomous-company experiment: autonomous websites, research agents, and local models on constrained hardware. Keep the headings short; describe hardware constraints in body copy rather than turning internal shorthand into a headline. Verify system scope and current operating status before production publication.
 
 ### Service engagements
 
