@@ -167,12 +167,14 @@
     }
     .a-header { position: relative; z-index: 2; border-bottom: 1px solid var(--line); }
     .a-header .site-logo { color: var(--acid); }
-    .a-header .site-logo span:last-child { color: var(--ink); }
+    .a-header .brand-lockup { display: grid; gap: 4px; }
+    .a-header .brand-lockup strong { color: var(--ink); font: inherit; }
+    .a-header .brand-lockup small { color: var(--muted); font: 500 8px/1 var(--font-mono); letter-spacing: .15em; text-transform: uppercase; }
     .a-header .nav-cta { padding: 11px 14px; border: 1px solid var(--acid); color: var(--black); background: var(--acid); opacity: 1; }
     .a-hero { position: relative; z-index: 1; padding: 92px 0 104px; }
     .a-hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr); gap: 76px; align-items: end; }
     .a-hero .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 38px; color: var(--acid); }
-    .a-hero h1 { margin: 0 0 30px; max-width: 780px; font: 600 clamp(58px, 6.8vw, 98px)/.86 var(--font-display); letter-spacing: -.06em; }
+    .a-hero h1 { margin: 0 0 30px; max-width: 780px; font: 600 clamp(64px, 8.2vw, 122px)/.84 var(--font-display); letter-spacing: -.065em; }
     .a-hero h1 em { color: var(--acid); font-family: "Newsreader", serif; font-weight: 400; }
     .a-hero-copy { max-width: 660px; color: #c7c8c1; }
     .a-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 38px; }
@@ -415,7 +417,6 @@
       .site-nav { min-height: 64px; }
       .site-links .nav-cta { padding: 10px; font-size: 9px; }
       .a-hero h1, .b-hero h1, .c-hero h1 { font-size: clamp(56px,19vw,78px); }
-      .a-hero h1 { font-size: clamp(50px, 14vw, 60px); }
       .a-hero-grid, .b-hero-grid, .c-hero-grid { gap: 48px; }
       .system-body { padding: 16px; }
       .system-loop { grid-template-columns: 1fr 1fr; }
@@ -451,7 +452,10 @@
       <article id="variant-a" class="variant variant-a active" aria-label="Variant A: Systems Lab">
         <header class="a-header">
           <div class="container site-nav">
-            <div class="site-logo"><span class="status-dot"></span><span>Autonomica</span></div>
+            <div class="site-logo">
+              <span class="status-dot"></span>
+              <span class="brand-lockup"><strong>Autonomica</strong><small>Applied AI lab</small></span>
+            </div>
             <nav class="site-links" aria-label="Systems Lab navigation">
               <button type="button" onclick="jumpTo('a-systems')">Systems</button>
               <button type="button" onclick="jumpTo('a-services')">Services</button>
@@ -464,9 +468,9 @@
         <section class="a-hero">
           <div class="container a-hero-grid">
             <div>
-              <div class="eyebrow" data-annotate><span class="status-dot"></span> Autonomica / Applied AI lab</div>
-              <h1 data-annotate>Building the operating system for a company that runs <em>itself.</em></h1>
-              <p class="a-hero-copy body-large">The company is the experiment. We build the software it needs, then use it to run Autonomica. Every system here started as a missing piece.</p>
+              <div class="eyebrow" data-annotate><span class="status-dot"></span> Experiment 01 / autonomous company</div>
+              <h1 data-annotate>Building a company that runs <em>itself.</em></h1>
+              <p class="a-hero-copy body-large">Autonomica is an applied AI systems lab. The company is the experiment: we build its operating system, then use it to run the business. Every system here started as a missing piece.</p>
               <div class="a-hero-actions">
                 <button class="btn a-primary" type="button" onclick="jumpTo('a-systems')">Explore the systems <span class="arrow">↘</span></button>
                 <button class="btn a-secondary" type="button" onclick="jumpTo('a-services')">Work with us</button>

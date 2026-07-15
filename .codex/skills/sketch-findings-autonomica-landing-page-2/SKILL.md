@@ -18,7 +18,7 @@ Sketch sessions wrapped: 2026-07-15
 
 Use the selected **Systems Lab** direction: near-black atmospheric surfaces, acid-lime primary signals, warm ivory typography, restrained orange warnings, editorial scale, compact mono labels, thin technical borders, and interface-like system diagrams. The page narrative should move from the autonomous-company experiment to the operating loop, then to systems built by the experiment, bounded services, field notes, and a narrow workflow CTA.
 
-Use `Autonomica / Applied AI lab` as the compact identity line. The hero thesis is `Building the operating system for a company that runs itself.`
+Use `Autonomica / Applied AI lab` as the compact header lockup. Keep `Experiment 01 / autonomous company` as the hero label and `Building a company that runs itself.` as the hero thesis. Explain the operating-system idea in the body copy.
 
 Preserve tension between editorial research and operational software. Avoid drifting into a generic SaaS portfolio, neon cyberpunk decoration, or consultancy-first positioning.
 </design_direction>

@@ -19,7 +19,7 @@ Do not flatten these into three equal business units. The experiment gives the o
 
 Use this sequence:
 
-1. Hero: use “Autonomica / Applied AI lab” as the identity line and lead with “Building the operating system for a company that runs itself.” The body explains that Autonomica is both the company and the test environment.
+1. Header and hero: use “Autonomica / Applied AI lab” as the compact brand lockup. Label the hero “Experiment 01 / autonomous company,” lead with “Building a company that runs itself,” and explain the operating-system idea in the body copy.
 2. Research → Build → Operate rail: the compact explanation of the method.
 3. Systems from the experiment: concrete proof that the research produces working operations, whether or not each one becomes a product.
 4. Ways to work together: bounded engagements, clearly marked as offers rather than the identity.
