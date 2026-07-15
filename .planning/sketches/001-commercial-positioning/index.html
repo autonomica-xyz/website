@@ -206,8 +206,9 @@
     .product-grid-a { display: grid; grid-template-columns: repeat(12,1fr); border: 1px solid var(--line); }
     .product-card-a { position: relative; min-height: 340px; padding: 30px; overflow: hidden; border-right: 1px solid var(--line); background: rgba(255,255,255,.012); }
     .product-card-a:nth-child(1) { grid-column: span 5; }
-    .product-card-a:nth-child(2) { grid-column: span 4; }
-    .product-card-a:nth-child(3) { grid-column: span 3; border-right: 0; }
+    .product-card-a:nth-child(2) { grid-column: span 7; border-right: 0; }
+    .product-card-a:nth-child(3) { grid-column: span 7; border-top: 1px solid var(--line); }
+    .product-card-a:nth-child(4) { grid-column: span 5; border-top: 1px solid var(--line); border-right: 0; }
     .product-card-a::after { content: attr(data-number); position: absolute; right: 10px; bottom: -36px; color: rgba(255,255,255,.028); font: 700 150px/1 var(--font-display); }
     .product-card-a:hover { background: rgba(184,255,63,.035); }
     .product-status { display: flex; align-items: center; gap: 8px; margin-bottom: 70px; color: var(--acid); font: 500 9px/1 var(--font-mono); text-transform: uppercase; letter-spacing: .1em; }
@@ -400,7 +401,7 @@
       .a-rail-grid, .notes-grid, .capability-grid, .evidence-grid { grid-template-columns: 1fr; }
       .a-rail-item { border-right: 0; border-bottom: 1px solid var(--line); }
       .a-rail-item:last-child { border-bottom: 0; }
-      .product-card-a:nth-child(n) { grid-column: span 12; min-height: 280px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .product-card-a:nth-child(n) { grid-column: span 12; min-height: 280px; border-top: 0; border-right: 0; border-bottom: 1px solid var(--line); }
       .product-card-a:last-child { border-bottom: 0; }
       .services-a { grid-template-columns: 1fr; gap: 24px; }
       .services-a-intro { position: static; }
@@ -509,26 +510,32 @@
             <div class="section-kicker eyebrow">Systems from the experiment</div>
             <div class="a-products-head">
               <h2 class="section-title" data-annotate>The things we had to build.</h2>
-              <p class="body-large">The company is the test bed. When something is missing, we build it and run it for real. These are three of those systems.</p>
+              <p class="body-large">The company is the test bed. We build applications, run them for real, and use what breaks to guide the next experiment. These are four active lines of work.</p>
             </div>
             <div class="product-grid-a">
               <article class="product-card-a" data-number="01" data-annotate>
-                <div class="product-status"><span class="status-dot"></span> Content operations</div>
-                <h3>Autonomous content sites</h3>
-                <p>Content websites run as operating experiments. Software handles the recurring work; we study where the process still needs a person.</p>
-                <button class="text-link" type="button" onclick="notify('The autonomous content sites field note would open here.')">Read the experiment ↗</button>
+                <div class="product-status"><span class="status-dot"></span> Web operations</div>
+                <h3>Autonomous websites</h3>
+                <p>Sites that research, publish, and maintain themselves. We run them as operating experiments and study where the process still needs a person.</p>
+                <button class="text-link" type="button" onclick="notify('The autonomous websites field note would open here.')">Read the experiment ↗</button>
               </article>
               <article class="product-card-a" data-number="02">
-                <div class="product-status"><span class="status-dot"></span> Distributed orchestration</div>
-                <h3>Transcription at fleet scale</h3>
-                <p>A work queue that routes transcription jobs across a closed fleet of machines and returns timestamped transcripts without someone assigning each job by hand.</p>
-                <button class="text-link" type="button" onclick="notify('The distributed transcription system detail would open here.')">Inspect the system ↗</button>
+                <div class="product-status"><span class="status-dot"></span> Research operations</div>
+                <h3>Research agents</h3>
+                <p>Agents that gather sources, compare claims, and produce cited research. Every step from question to source stays visible for review.</p>
+                <button class="text-link" type="button" onclick="notify('The research agents detail would open here.')">Inspect the system ↗</button>
               </article>
               <article class="product-card-a" data-number="03">
                 <div class="product-status"><span class="status-dot"></span> Infrastructure operations</div>
                 <h3>AutoDevOps</h3>
                 <p>An autonomous SRE system that watches infrastructure, investigates incidents, passes fixes through an independent review, and verifies the result.</p>
                 <button class="text-link" type="button" onclick="notify('AutoDevOps project detail would open here.')">View system ↗</button>
+              </article>
+              <article class="product-card-a" data-number="04">
+                <div class="product-status"><span class="status-dot"></span> Local inference</div>
+                <h3>Local models on shitty hardware</h3>
+                <p>Experiments in getting useful local inference out of modest, old, and otherwise inconvenient machines. Measure first, then tune the whole stack.</p>
+                <button class="text-link" type="button" onclick="notify('The local model build notes would open here.')">Read the build notes ↗</button>
               </article>
             </div>
           </div>

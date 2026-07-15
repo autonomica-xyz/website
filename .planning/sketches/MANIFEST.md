@@ -7,7 +7,8 @@ Autonomica is a systems lab building the operating system for an autonomous comp
 ## Reference Points
 
 - Current Autonomica site: dark editorial layout, acid-lime system language, strong mission narrative
-- Built systems: autonomously operated content websites, distributed transcription orchestration, and AutoDevOps
+- Featured work: autonomous websites, research agents, AutoDevOps, and local-model experiments on constrained hardware
+- Additional built system: distributed transcription orchestration
 - Local implementation reference for transcription: the `workqueue` distributed job-routing system and transcription worker
 - Visual references: industrial control panels, independent research journals, concise engineering-studio case studies
 
