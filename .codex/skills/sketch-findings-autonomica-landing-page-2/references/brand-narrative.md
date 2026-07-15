@@ -19,9 +19,9 @@ Do not flatten these into three equal business units. The experiment gives the o
 
 Use this sequence:
 
-1. Hero: applied AI systems lab and a direct operating-system thesis.
+1. Hero: label the autonomous-company experiment and lead with “Building a company that runs itself.” Keep “applied AI systems lab” and the operating-system explanation in the body copy, not the eyebrow or headline.
 2. Research → Build → Operate rail: the compact explanation of the method.
-3. Products in the field: concrete proof that the research produces working systems.
+3. Systems from the experiment: concrete proof that the research produces working operations, whether or not each one becomes a product.
 4. Ways to work together: bounded engagements, clearly marked as offers rather than the identity.
 5. Field notes: maintain the public experiment and research cadence.
 6. CTA: ask for one workflow that should run itself.
@@ -33,8 +33,9 @@ Use this sequence:
 - Prefer “observe, decide, act, verify” to broad AI claims.
 - Admit maturity honestly: field testing, working prototype, planned, or open source.
 - Keep the existing experimental confidence: ambitious premise, grounded execution.
+- Prefer concrete nouns such as company, software, control loop, memory, permissions, and recovery over stacked category terms.
 
-Useful phrases include “systems lab,” “operating system for an autonomous company,” “products in the field,” “field notes,” “working systems,” “bounded workflow,” and “earn autonomy.”
+Useful phrases include “systems lab,” “operating system for an autonomous company,” “systems from the experiment,” “field notes,” “working systems,” “bounded workflow,” and “earn autonomy.”
 
 ## What to Avoid
 
@@ -43,6 +44,7 @@ Useful phrases include “systems lab,” “operating system for an autonomous 
 - Treating research as a blog attached to a product portfolio.
 - Unsupported performance, customer, revenue, or autonomy claims.
 - Implying every workflow should be automated or that a model alone creates autonomy.
+- Stacking “AI,” “systems,” “autonomous,” and “operations” into slogan-like headings without explaining what is being built or tested.
 
 ## Origin
 

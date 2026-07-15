@@ -18,7 +18,7 @@ Open `.planning/sketches/001-commercial-positioning/index.html` in a browser.
 
 ## Variants
 
-- **A: Systems Lab** — balances research, working products, and scoped service engagements while staying closest to the current identity.
+- **A: Systems Lab** — balances research, working systems, and scoped service engagements while staying closest to the current identity.
 - **B: Product Foundry** — leads with AutoDevOps, GitHub Watch, and GetLate MCP as a coherent software portfolio.
 - **C: Applied AI Partner** — leads with outcomes and engagement models, using working systems as proof of execution.
 
@@ -32,10 +32,12 @@ Preserve the dark industrial/editorial visual system, acid-lime primary accent, 
 
 ## Content Assumptions
 
-- AutoDevOps, GitHub Watch, and GetLate MCP are drawn from working local repositories.
+- Autonomous content websites and distributed transcription orchestration were confirmed by the user as built experiments/systems.
+- The transcription description is grounded in the local `workqueue` repository and its timestamped transcription worker.
+- AutoDevOps is drawn from its working local repository.
 - "Operations Audit," "System Build Sprint," and "Managed Autonomy" are proposed service packages, not confirmed offers.
 - No performance, customer, or revenue claims are introduced.
 
 ## What to Look For
 
-When implementing the real site, keep the Systems Lab identity and research experiment visible before introducing products and services. Product detail can borrow some of Variant B's clarity, but not its portfolio-first positioning. Service detail can borrow Variant C's bounded engagement model, but not its consultancy-first positioning.
+When implementing the real site, keep the Systems Lab identity and research experiment visible before introducing systems and services. System detail can borrow some of Variant B's clarity, but not its portfolio-first positioning. Service detail can borrow Variant C's bounded engagement model, but not its consultancy-first positioning.

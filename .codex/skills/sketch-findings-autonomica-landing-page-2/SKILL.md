@@ -6,9 +6,9 @@ description: Validated Systems Lab design decisions, CSS patterns, and narrative
 <context>
 ## Project: autonomica-landing-page-2
 
-Autonomica is a systems lab building the operating system for an autonomous company. The site must retain the feeling of a public research experiment while making real products and scoped services commercially legible. Products and services are outputs of the experiment, not replacements for the mission.
+Autonomica is a systems lab building the operating system for an autonomous company. The site must retain the feeling of a public research experiment while making built systems and scoped services legible. Systems and services are outputs of the experiment, not replacements for the mission.
 
-Reference points: the existing dark editorial Autonomica identity, industrial control panels, independent research journals, system logs, and the working AutoDevOps, GitHub Watch, and GetLate MCP repositories.
+Reference points: the existing dark editorial Autonomica identity, industrial control panels, independent research journals, system logs, user-confirmed autonomously operated content websites, the distributed transcription `workqueue`, and AutoDevOps.
 
 Sketch sessions wrapped: 2026-07-15
 </context>
@@ -16,7 +16,7 @@ Sketch sessions wrapped: 2026-07-15
 <design_direction>
 ## Overall Direction
 
-Use the selected **Systems Lab** direction: near-black atmospheric surfaces, acid-lime primary signals, warm ivory typography, restrained orange warnings, editorial scale, compact mono labels, thin technical borders, and interface-like system diagrams. The page narrative should move from the autonomous-company experiment to the operating loop, then to products, bounded services, field notes, and a narrow workflow CTA.
+Use the selected **Systems Lab** direction: near-black atmospheric surfaces, acid-lime primary signals, warm ivory typography, restrained orange warnings, editorial scale, compact mono labels, thin technical borders, and interface-like system diagrams. The page narrative should move from the autonomous-company experiment to the operating loop, then to systems built by the experiment, bounded services, field notes, and a narrow workflow CTA.
 
 Preserve tension between editorial research and operational software. Avoid drifting into a generic SaaS portfolio, neon cyberpunk decoration, or consultancy-first positioning.
 </design_direction>
