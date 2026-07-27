@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Autonomica — Design B: Firm Packaging</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #14201a;
+      --ink-soft: #3d4f45;
+      --muted: #5f7368;
+      --line: #d7e0da;
+      --paper: #f4f1ea;
+      --paper-2: #ebe6db;
+      --card: #fffdf8;
+      --accent: #0f6b4c;
+      --accent-2: #c45c26;
+      --highlight: #e8f3ec;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Source Sans 3", system-ui, sans-serif;
+      --mono: "Source Code Pro", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    .dir-banner {
+      position: sticky; top: 0; z-index: 100; background: #1a2e24; color: #dce8e1;
+      padding: 10px 20px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+    .dir-banner strong { color: #8fd9b4; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .dir-banner span { font-size: 13px; opacity: 0.8; }
+    .dir-banner nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    .dir-banner a {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 6px 10px; border: 1px solid rgba(255,255,255,0.15); border-radius: 3px; color: #b7c9bf;
+    }
+    .dir-banner a.active, .dir-banner a:hover { color: #8fd9b4; border-color: rgba(143,217,180,0.4); }
+
+    header {
+      border-bottom: 1px solid var(--line); background: rgba(244,241,234,0.92);
+      backdrop-filter: blur(12px); position: sticky; top: 42px; z-index: 50;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+    .brand { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; align-items: center; font-size: 0.95rem; font-weight: 500; color: var(--ink-soft); }
+    .nav-links a:hover { color: var(--ink); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95rem;
+      padding: 12px 18px; border-radius: 999px; border: 1px solid transparent; transition: 0.15s ease; cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: #0c573e; }
+    .btn-secondary { background: transparent; border-color: var(--ink); color: var(--ink); }
+    .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+    .btn-warm { background: var(--accent-2); color: white; }
+
+    .hero {
+      padding: 72px 0 40px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: end;
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .nav-links a:not(.btn) { display: none; }
+    }
+    .eyebrow {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin-bottom: 18px;
+    }
+    h1 {
+      font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 500;
+      line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; max-width: 16ch;
+    }
+    .hero-lead { font-size: 1.2rem; color: var(--ink-soft); max-width: 36rem; margin-bottom: 28px; line-height: 1.6; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+    .trust-row { display: flex; flex-wrap: wrap; gap: 18px 28px; color: var(--muted); font-size: 0.9rem; }
+    .trust-row strong { color: var(--ink); font-weight: 600; }
+
+    .hero-card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 28px;
+      box-shadow: 0 20px 50px rgba(20,32,26,0.06);
+    }
+    .hero-card .kicker {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+    }
+    .hero-card .big {
+      font-family: var(--serif); font-size: 2.8rem; font-weight: 600; color: var(--accent); line-height: 1.05; letter-spacing: -0.03em;
+    }
+    .hero-card p { margin-top: 12px; color: var(--ink-soft); }
+    .mini-metrics { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mini { background: var(--highlight); border-radius: 12px; padding: 14px; }
+    .mini b { display: block; font-size: 1.15rem; }
+    .mini span { font-size: 0.85rem; color: var(--muted); }
+
+    .band { background: var(--ink); color: #e8efe9; padding: 28px 0; margin-top: 24px; }
+    .band-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    @media (max-width: 800px) { .band-inner { grid-template-columns: 1fr 1fr; } }
+    .band-item strong { display: block; font-family: var(--serif); font-size: 1.35rem; color: #8fd9b4; margin-bottom: 4px; }
+    .band-item span { font-size: 0.9rem; opacity: 0.75; }
+
+    section { padding: 88px 0; }
+    .sec-label {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px; font-weight: 500;
+    }
+    h2 {
+      font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 2.6rem); font-weight: 500;
+      letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 14px;
+    }
+    .lede { color: var(--ink-soft); font-size: 1.1rem; max-width: 40rem; margin-bottom: 36px; }
+
+    .offers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 800px) { .offers { grid-template-columns: 1fr; } }
+    .offer {
+      background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 30px;
+      display: flex; flex-direction: column;
+    }
+    .offer.featured {
+      background: linear-gradient(160deg, #123d2c 0%, #0f6b4c 100%); color: white; border: none;
+    }
+    .offer .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; opacity: 0.7;
+    }
+    .offer h3 { font-family: var(--serif); font-size: 1.7rem; font-weight: 500; margin-bottom: 10px; }
+    .offer p { color: var(--muted); margin-bottom: 18px; flex: 1; }
+    .offer.featured p { color: rgba(255,255,255,0.78); }
+    .offer ul { list-style: none; display: grid; gap: 8px; margin-bottom: 22px; font-size: 0.95rem; }
+    .offer ul li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+    .offer.featured ul li::before { color: #8fd9b4; }
+
+    .path {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--card);
+    }
+    @media (max-width: 800px) { .path { grid-template-columns: 1fr; } }
+    .path-step { padding: 28px; border-right: 1px solid var(--line); }
+    .path-step:last-child { border-right: none; }
+    @media (max-width: 800px) {
+      .path-step { border-right: none; border-bottom: 1px solid var(--line); }
+      .path-step:last-child { border-bottom: none; }
+    }
+    .path-step .n { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
+    .path-step h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; margin-bottom: 10px; }
+    .path-step p { color: var(--muted); font-size: 0.98rem; }
+
+    .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 800px) { .cases { grid-template-columns: 1fr; } }
+    .case {
+      border-top: 3px solid var(--accent); background: var(--card); border-radius: 0 0 14px 14px;
+      border-right: 1px solid var(--line); border-left: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      padding: 22px;
+    }
+    .case .metric { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); margin: 8px 0; }
+    .case h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .case p { color: var(--muted); font-size: 0.95rem; }
+
+    .cta-panel {
+      background: var(--paper-2); border: 1px solid var(--line); border-radius: 24px; padding: 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;
+    }
+    @media (max-width: 800px) { .cta-panel { grid-template-columns: 1fr; padding: 28px; } }
+    form { display: grid; gap: 12px; }
+    label { display: grid; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
+    input, select, textarea {
+      font: inherit; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); background: white; color: var(--ink);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    footer {
+      border-top: 1px solid var(--line); padding: 28px 0 40px;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="dir-banner">
+    <div>
+      <strong>Direction B · Firm Packaging</strong>
+      <span>Two buyable offers with clear commercial language — no fake “ops review”</span>
+    </div>
+    <nav>
+      <a href="01-ops-control-plane.html">A · Dual Offer</a>
+      <a class="active" href="02-throughput-firm.html">B · Firm Packaging</a>
+      <a href="03-open-core-market.html">C · Product-Led</a>
+    </nav>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#">Autonomica<span>.</span></a>
+      <div class="nav-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#how">How we work</a>
+        <a href="#proof">Proof</a>
+        <a class="btn btn-primary" href="#contact">Talk to us</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <p class="eyebrow">Custom AI for volume work · embedded force multipliers</p>
+        <h1>Large volumes. Low unit cost. Real company leverage.</h1>
+        <p class="hero-lead">
+          Autonomica builds distributed AI systems for batch workloads — transcription, OCR, image
+          generation and more — and white-gloves into companies that need AI as a force multiplier, not a pilot theater.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Discuss a project</a>
+          <a class="btn btn-secondary" href="#solutions">Compare solutions</a>
+        </div>
+        <div class="trust-row">
+          <span><strong>Workload systems</strong> · designed for cost at scale</span>
+          <span><strong>White glove</strong> · embedded delivery, not decks</span>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <p class="kicker">What buyers usually start with</p>
+        <div class="big">A pipeline<br />or an embed.</div>
+        <p>Either industrialize one high-volume AI job, or put us inside the company to find and ship force-multiplier outcomes.</p>
+        <div class="mini-metrics">
+          <div class="mini"><b>Batch AI</b><span>Distributed processing</span></div>
+          <div class="mini"><b>White glove</b><span>Company AI-fication</span></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="band">
+      <div class="wrap band-inner">
+        <div class="band-item"><strong>Transcribe</strong><span>Media at archive scale</span></div>
+        <div class="band-item"><strong>OCR</strong><span>Documents that actually finish</span></div>
+        <div class="band-item"><strong>Vision</strong><span>Generate, edit, QC in bulk</span></div>
+        <div class="band-item"><strong>Embed</strong><span>AI-fy the operating model</span></div>
+      </div>
+    </div>
+
+    <section id="solutions">
+      <div class="wrap">
+        <p class="sec-label">Commercial offers</p>
+        <h2>Two solutions. Clear scopes. No vague “review.”</h2>
+        <p class="lede">Buy the industrial pipeline when the workload is known. Buy the embed when the company needs someone to find leverage and install it.</p>
+        <div class="offers">
+          <div class="offer featured">
+            <div class="tag">Solution 01 · productized systems work</div>
+            <h3>Distributed workload automation</h3>
+            <p>Custom AI solutions for batch workloads. We design cost-efficient, distributed processing for large-volume operations — anything that can be sharded and completed at scale.</p>
+            <ul>
+              <li>Transcription & speech fleets</li>
+              <li>OCR / document extraction pipelines</li>
+              <li>Image generation & manipulation at volume</li>
+              <li>Routing, retries, spot/hybrid capacity, unit-cost telemetry</li>
+              <li>Your custom distributable workload</li>
+            </ul>
+            <a class="btn btn-warm" href="#contact">Send workload details →</a>
+          </div>
+          <div class="offer">
+            <div class="tag">Solution 02 · embedded engagement</div>
+            <h3>White-glove AI-fication</h3>
+            <p>We embed into the company, learn how work actually moves, and install systems that multiply output — with ownership transferred to your team.</p>
+            <ul>
+              <li>Operator-level discovery inside the business</li>
+              <li>Prioritized force-multiplier roadmap</li>
+              <li>Build & ship production AI systems</li>
+              <li>Runbooks, economics, and handoff</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Start embed conversation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" style="padding-top:0">
+      <div class="wrap">
+        <p class="sec-label">How engagements start</p>
+        <h2>From volume or from the org chart.</h2>
+        <p class="lede">Different entry points, same standard: production outcomes with measurable leverage.</p>
+        <div class="path">
+          <div class="path-step">
+            <div class="n">WORKLOAD PATH</div>
+            <h3>Sample → design → run</h3>
+            <p>Share volume, formats, quality bar, and current cost. We design the distributed architecture and unit economics, then ship the pipeline.</p>
+          </div>
+          <div class="path-step">
+            <div class="n">WHITE-GLOVE PATH</div>
+            <h3>Embed → multiply → transfer</h3>
+            <p>We join the team, find where human time is wasted, ship the highest-leverage systems, and leave you able to operate them.</p>
+          </div>
+          <div class="path-step">
+            <div class="n">EITHER PATH</div>
+            <h3>Cost is a design input</h3>
+            <p>Model choice, hardware, batching, retries, and QC are engineered against $/item and quality — not demos on happy-path samples.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof">
+      <div class="wrap">
+        <p class="sec-label">Proof language (templates)</p>
+        <h2>Speak board-deck numbers for batch work.</h2>
+        <p class="lede">Structure the site for outcomes even before every case is public — replace placeholders as projects land.</p>
+        <div class="cases">
+          <div class="case">
+            <div class="metric">−62%</div>
+            <h3>Transcription unit cost</h3>
+            <p>Hybrid model ladder + distributed workers vs single-API baseline. Template metric.</p>
+          </div>
+          <div class="case">
+            <div class="metric">4.1M</div>
+            <h3>Pages OCR’d / month</h3>
+            <p>Archive pipeline with layout-aware extraction and sampling-based QC. Template metric.</p>
+          </div>
+          <div class="case">
+            <div class="metric">3×</div>
+            <h3>Team throughput</h3>
+            <p>White-glove embed: one function automated end-to-end, same headcount. Template metric.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="cta-panel">
+          <div>
+            <p class="sec-label">Next step</p>
+            <h2>Tell us the volume — or the bottleneck.</h2>
+            <p class="lede" style="margin-bottom:0">Workload details or “we need a force multiplier in X” is enough. We’ll reply with the better fit: pipeline or embed.</p>
+          </div>
+          <form onsubmit="event.preventDefault(); alert('Mock form only.');">
+            <label>Work email<input required type="email" placeholder="you@company.com" /></label>
+            <label>Which solution fits best?
+              <select required>
+                <option value="">Select</option>
+                <option>Distributed workload automation</option>
+                <option>White-glove AI-fication</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label>If workload — what type?
+              <select>
+                <option value="">Optional</option>
+                <option>Transcription / speech</option>
+                <option>OCR / documents</option>
+                <option>Image generation / manipulation</option>
+                <option>Other distributable AI batch work</option>
+              </select>
+            </label>
+            <label>Context<textarea placeholder="Volume, cost today, quality bar, timeline…"></textarea></label>
+            <button class="btn btn-primary" type="submit">Send project inquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="wrap">
+    <footer>
+      <span>© 2026 Autonomica · Design exploration B</span>
+      <span>Firm packaging · two clear offers</span>
+    </footer>
+  </div>
+</body>
+</html>

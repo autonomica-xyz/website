@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Autonomica — v02 · Operator-direct</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+:root {
+      --bg: #07080a;
+      --bg-elev: #0e1014;
+      --line: rgba(255,255,255,0.08);
+      --text: #ece8df;
+      --muted: #b4bac4;
+      --accent: #c8f542;
+      --accent-dim: rgba(200,245,66,0.12);
+      --warn: #f5b942;
+      --ok: #5ee4a2;
+      --serif: "Instrument Serif", Georgia, serif;
+      --sans: "IBM Plex Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      background-image: radial-gradient(circle, rgba(180,255,57,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    a { color: inherit; text-decoration: none; }
+    .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 12px 18px; border-radius: 4px; border: 1px solid transparent; cursor: pointer; transition: 0.15s ease;
+    }
+    .btn-primary { background: var(--accent); color: #0a0c08; }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-ghost { background: transparent; border-color: var(--line); color: var(--text); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    .dir-banner {
+      position: sticky; top: 0; z-index: 100; background: #1a1f12; border-bottom: 1px solid rgba(200,245,66,0.25);
+      padding: 10px 20px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+    .dir-banner strong { color: var(--accent); font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .dir-banner span { color: var(--muted); font-size: 13px; }
+    .dir-banner nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    .dir-banner a {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 6px 10px; border: 1px solid var(--line); border-radius: 3px; color: var(--muted);
+    }
+    .dir-banner a.active, .dir-banner a:hover { color: var(--accent); border-color: rgba(200,245,66,0.35); }
+
+    header {
+      border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); background: rgba(7,8,10,0.88);
+      position: sticky; top: 42px; z-index: 50;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .brand .dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-dim); animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px var(--accent-dim); }
+      50% { box-shadow: 0 0 0 6px rgba(200,245,66,0.08); }
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 64px;
+      position: relative;
+    }
+    .hero-glow {
+      position: absolute; top: 20%; left: 35%; width: 520px; height: 520px;
+      background: var(--accent); border-radius: 50%; filter: blur(180px); opacity: 0.05; pointer-events: none;
+    }
+    .status-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted);
+    }
+    .badge .live {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .badge em { font-style: normal; color: var(--accent); }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
+      position: relative;
+    }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .nav-links .hide-sm { display: none; }
+    }
+    h1 {
+      font-family: var(--serif); font-size: clamp(2.8rem, 5.5vw, 4.5rem); font-weight: 400;
+      line-height: 0.96; letter-spacing: -0.02em; margin-bottom: 22px;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-lead {
+      font-size: 1.15rem; color: var(--muted); max-width: 34rem; margin-bottom: 16px; line-height: 1.7;
+    }
+    .hero-sub {
+      font-size: 0.98rem; color: var(--muted); max-width: 34rem; margin-bottom: 28px; line-height: 1.65;
+      border-left: 2px solid rgba(200,245,66,0.35); padding-left: 14px;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+    .capability-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .capability-row span {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); padding: 5px 10px; border: 1px solid var(--line); border-radius: 4px;
+    }
+
+    /* Terminal-ish lab log */
+    .lab-panel {
+      background: linear-gradient(180deg, #12161d 0%, #0b0d11 100%);
+      border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    }
+    .lab-top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 14px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.02);
+    }
+    .lab-body { padding: 16px; display: grid; gap: 12px; }
+    .boot {
+      font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7;
+    }
+    .boot .ok { color: var(--accent); }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .stat {
+      background: rgba(255,255,255,0.025); border: 1px solid var(--line); border-radius: 6px; padding: 12px 10px;
+    }
+    .stat b { display: block; font-family: var(--serif); font-size: 1.35rem; color: var(--accent); line-height: 1; margin-bottom: 4px; font-weight: 400; }
+    .stat small { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .job {
+      display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center;
+      padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: rgba(0,0,0,0.25);
+    }
+    .job .name { font-family: var(--mono); font-size: 12px; }
+    .job .role { color: var(--muted); font-size: 12px; margin-top: 2px; }
+    .pill {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 8px; border-radius: 999px;
+    }
+    .pill-run { background: var(--accent-dim); color: var(--accent); }
+    .pill-ok { background: rgba(94,228,162,0.12); color: var(--ok); }
+    .pill-lab { background: rgba(255,255,255,0.06); color: var(--muted); }
+
+    section { padding: 88px 0; border-top: 1px solid var(--line); position: relative; }
+    .sec-head { margin-bottom: 40px; max-width: 40rem; }
+    .sec-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; color: rgba(200,245,66,0.45); margin-bottom: 14px; }
+    .sec-head h2 {
+      font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.85rem); font-weight: 400;
+      line-height: 1.08; margin-bottom: 14px;
+    }
+    .sec-head h2 em { font-style: italic; color: var(--accent); }
+    .sec-head p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+
+    /* Thesis band */
+    .thesis {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start;
+    }
+    @media (max-width: 860px) { .thesis { grid-template-columns: 1fr; gap: 28px; } }
+    .thesis-list { display: grid; gap: 22px; }
+    .thesis-item { border-top: 1px solid var(--line); padding-top: 18px; }
+    .thesis-item .n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; color: rgba(200,245,66,0.4); margin-bottom: 8px; }
+    .thesis-item h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; margin-bottom: 8px; }
+    .thesis-item p { color: var(--muted); font-size: 0.98rem; line-height: 1.65; max-width: 28rem; }
+
+    /* Applied outputs — lab framing of commercial work */
+    .outputs-intro {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: end;
+      margin-bottom: 28px;
+    }
+    .outputs-intro p {
+      font-family: var(--mono); font-size: 12px; color: var(--muted); max-width: 28rem; line-height: 1.6;
+    }
+    .output-stack { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .output {
+      display: grid; grid-template-columns: 100px 1fr auto; gap: 24px; align-items: start;
+      padding: 32px 0; border-bottom: 1px solid var(--line);
+    }
+    @media (max-width: 800px) {
+      .output { grid-template-columns: 1fr; gap: 12px; }
+    }
+    .output .idx {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: rgba(200,245,66,0.4); padding-top: 6px;
+    }
+    .output h3 {
+      font-family: var(--serif); font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 400; margin-bottom: 10px;
+    }
+    .output h3:hover { color: var(--accent); }
+    .output .desc { color: var(--muted); line-height: 1.7; max-width: 36rem; margin-bottom: 14px; }
+    .output .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .output .tags span {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); border: 1px solid var(--line); padding: 4px 8px; border-radius: 3px;
+    }
+    .output .side {
+      text-align: right; min-width: 140px;
+    }
+    @media (max-width: 800px) { .output .side { text-align: left; } }
+    .output .side .kind {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .output .side p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* Workload classes as lab experiments */
+    .exp-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    }
+    @media (max-width: 900px) { .exp-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .exp-grid { grid-template-columns: 1fr; } }
+    .exp {
+      background: var(--bg-elev); padding: 22px 18px; min-height: 160px;
+      transition: background 0.2s;
+    }
+    .exp:hover { background: #12151b; }
+    .exp .st { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .exp h4 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; margin-bottom: 8px; }
+    .exp p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    /* Phases — keep lab roadmap */
+    .phases { border-top: 1px solid var(--line); }
+    .phase {
+      display: grid; grid-template-columns: 140px 1fr 100px; gap: 24px; align-items: start;
+      padding: 28px 0; border-bottom: 1px solid var(--line);
+    }
+    @media (max-width: 700px) { .phase { grid-template-columns: 1fr; gap: 8px; } }
+    .phase.dim { opacity: 0.4; }
+    .phase.dim:hover { opacity: 0.75; }
+    .phase .pl {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    }
+    .phase .dot {
+      width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25);
+    }
+    .phase.current .dot { background: var(--accent); border-color: var(--accent); }
+    .phase h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 6px; }
+    .phase p { color: var(--muted); max-width: 32rem; line-height: 1.6; }
+    .phase .cur {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); text-align: right;
+    }
+    @media (max-width: 700px) { .phase .cur { text-align: left; } }
+
+    /* Collaborate — commercial without shop feel */
+    .collab {
+      display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 40px;
+    }
+    @media (max-width: 860px) { .collab { grid-template-columns: 1fr; } }
+    .collab-note {
+      font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 20px;
+      padding: 16px; border: 1px dashed rgba(200,245,66,0.25); border-radius: 8px;
+    }
+    form {
+      display: grid; gap: 14px; background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: 12px; padding: 24px;
+    }
+    label {
+      display: grid; gap: 6px; font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    }
+    input, select, textarea {
+      font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line);
+      border-radius: 6px; padding: 12px; outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: rgba(200,245,66,0.4); }
+    textarea { min-height: 110px; resize: vertical; }
+
+    footer {
+      border-top: 1px solid var(--line); padding: 28px 0 40px;
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      color: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,245,66,0.2), transparent);
+    }
+
+</style>
+</head>
+<body>
+  <div class="dir-banner">
+    <div>
+      <strong>v02 · Operator × thesis</strong>
+      <span>Plain speech · agents + research first · batch as equal evidence</span>
+    </div>
+    <nav>
+      <a href="../index.html">← All versions</a>
+      <a class="" href="v00-initial-lab-mix.html">v00 Baseline</a>
+<a class="" href="v01-thesis-first.html">v01 Thesis</a>
+<a class="active" href="v02-operator-direct.html">v02 Direct</a>
+<a class="" href="v03-sparse.html">v03 Sparse</a>
+<a class="" href="v04-dual-engine.html">v04 Dual-engine</a>
+<a class="" href="v05-lab-notebook.html">v05 Notebook</a>
+    </nav>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#"><span class="dot"></span>Autonomica</a>
+      <div class="nav-links">
+        <a class="hide-sm" href="#lab">Lab</a>
+        <a class="hide-sm" href="#applied">Applied work</a>
+        <a class="hide-sm" href="#experiment">Experiment</a>
+        <a class="btn btn-primary" href="#work-with-us">Work with us</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="hero-glow"></div>
+      <div class="status-row">
+          <span class="badge"><span class="live"></span> lab.active</span>
+          <span class="badge">phase 01 · foundation</span>
+          <span class="badge">agents · research · batch</span>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <h1>An applied AI lab<br />building companies<br />that <em>run themselves.</em></h1>
+          <p class="hero-lead">One founder, production systems, and a public experiment: can autonomous operations outrun hire-to-grow? We don’t sell a catalog — we ship agents and systems that execute, then publish what we learn.</p>
+          <p class="hero-sub">Today that means <strong>custom agent creation and deployment</strong> — landscape research, competition monitoring, content, website ops — and <strong>distributed batch AI</strong> when volume and unit cost are the constraint. Same bar: production only, no pilots.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#applied">See the work ↓</a>
+            <a class="btn btn-ghost" href="#work-with-us">Work with us</a>
+          </div>
+          <div class="capability-row"><span>Autonomy thesis</span><span>Agent deployment</span><span>Research loops</span><span>Batch systems</span></div>
+        </div>
+
+        <div class="lab-panel" aria-label="Lab runtime">
+          <div class="lab-top">
+            <span class="label">runtime · agents + systems</span>
+            <span class="label">lab · evidence</span>
+          </div>
+          <div class="lab-body">
+            <div class="boot">
+              <div>> autonomica up</div>
+              <div>> thesis: own the loop</div>
+              <div>> status: <span class="ok">running</span> · agents + batch</div>
+            </div>
+            <div class="stat-row"><div class="stat"><b>Agents</b><small>Deployed loops</small></div><div class="stat"><b>Research</b><small>Live signals</small></div><div class="stat"><b>Batch</b><small>$/unit proof</small></div></div>
+            <div class="job">
+              <div>
+                <div class="name">agent.research</div>
+                <div class="role">Landscape · continuous scan</div>
+              </div>
+              <span class="pill pill-run">Live</span>
+            </div>
+            <div class="job">
+              <div>
+                <div class="name">agent.compete</div>
+                <div class="role">Competition monitoring</div>
+              </div>
+              <span class="pill pill-ok">Live</span>
+            </div>
+            <div class="job">
+              <div>
+                <div class="name">agent.content</div>
+                <div class="role">Content + site ops</div>
+              </div>
+              <span class="pill pill-lab">Active</span>
+            </div>
+            <div class="job">
+              <div>
+                <div class="name">sys.batch</div>
+                <div class="role">Volume pipelines · unit cost</div>
+              </div>
+              <span class="pill pill-run">Live</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section id="lab">
+      <div class="wrap">
+        <div class="thesis">
+          <div class="sec-head" style="margin-bottom:0">
+            <div class="sec-num">01 · Thesis</div>
+            <h2>AI shouldn’t wait<br />for a human to <em>click approve.</em></h2>
+            <p>Most “AI” still drafts and waits. Autonomica tests the opposite: agents and systems that execute inside clear boundaries, while we run our own company as the long experiment in autonomous operations.</p>
+            <p style="margin-top:16px">Client work is research under pressure — real functions, real volume, real failure modes. We won’t run a six-week demo that dies in a shared drive. If it ships, it has owners, metrics, and a cost model. Patterns that hold get published.</p>
+          </div>
+          <div class="thesis-list">
+            <div class="thesis-item">
+              <div class="n">01</div>
+              <h3>Own the loop</h3>
+              <p>Receive, decide, act, review — without a human in the middle of every step.</p>
+            </div>
+            <div class="thesis-item">
+              <div class="n">02</div>
+              <h3>Agents that run work</h3>
+              <p>Research, competition, content, site ops — company functions as deployed agents, not chat windows.</p>
+            </div>
+            <div class="thesis-item">
+              <div class="n">03</div>
+              <h3>Volume is the truth</h3>
+              <p>When the job is bulk AI, unit cost is architecture. Batch work exposes what demos hide.</p>
+            </div>
+            <div class="thesis-item">
+              <div class="n">04</div>
+              <h3>Transfer the method</h3>
+              <p>The endgame isn’t a black box. It’s replication — blueprints and findings others can run.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="applied">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-num">02 · Where the thesis meets the world</div>
+          <h2>Two evidence tracks.<br /><em>Same production bar.</em></h2>
+          <p>Both feed the autonomy experiment. Both ship systems you can run — not theater.</p>
+        </div>
+
+        <div class="outputs-intro">
+          <p>// evidence · agents first · batch when volume demands it</p>
+        </div>
+
+        <div class="output-stack">
+          <article class="output">
+            <div class="idx">01</div>
+            <div>
+              <h3>Custom agent creation & deployment</h3>
+              <p class="desc">We design, build, and deploy agents that own ongoing company work — the loops a business needs as it becomes more autonomous. Landscape research, competition monitoring, content creation, website management, and similar operating functions. Not chat demos: tools, schedules, quality gates, deploy paths, and ownership after handoff.</p>
+              <div class="tags"><span>Landscape research</span><span>Competition monitoring</span><span>Content</span><span>Website ops</span><span>Deploy</span></div>
+            </div>
+            <div class="side">
+              <div class="kind">Agents</div>
+              <p>You name the function. We ship an agent that runs it.</p>
+            </div>
+          </article>
+          <article class="output">
+            <div class="idx">02</div>
+            <div>
+              <h3>Distributed workload automation</h3>
+              <p class="desc">When the problem is volume — minutes, pages, images — we design distributed AI around unit cost. Transcription, OCR, image generation and manipulation, or any shardable job. Queues, workers, model routes, retries, QC, cost telemetry. The thesis dies if the economics don’t work; so we treat cost as a first-class constraint.</p>
+              <div class="tags"><span>Transcription</span><span>OCR</span><span>Images</span><span>Custom batch</span><span>Unit economics</span></div>
+            </div>
+            <div class="side">
+              <div class="kind">Batch</div>
+              <p>You bring volume and constraints. We ship the pipeline.</p>
+            </div>
+          </article>
+        </div>
+
+        <div style="margin-top:36px">
+          <div class="sec-num" style="margin-bottom:16px">Agent shapes we deploy</div>
+          <div class="exp-grid">
+            <div class="exp">
+              <div class="st">Research</div>
+              <h4>Landscape research</h4>
+              <p>Continuous scan of markets, tech, and positioning signals — findings the company can act on.</p>
+            </div>
+            <div class="exp">
+              <div class="st">Compete</div>
+              <h4>Competition monitoring</h4>
+              <p>Track rivals, pricing, launches, and narrative shifts without a full-time analyst loop.</p>
+            </div>
+            <div class="exp">
+              <div class="st">Content</div>
+              <h4>Content creation</h4>
+              <p>Draft, package, and ship on a cadence with review gates — not one-off prompts.</p>
+            </div>
+            <div class="exp">
+              <div class="st">Site</div>
+              <h4>Website management</h4>
+              <p>Publish, update, and keep the public surface current as part of ops, not a project.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:36px">
+          <div class="sec-num" style="margin-bottom:16px">Batch shapes we industrialize</div>
+          <div class="exp-grid">
+            <div class="exp">
+              <div class="st">Audio</div>
+              <h4>Transcription</h4>
+              <p>Long-form media, multi-language, cost ladders under load.</p>
+            </div>
+            <div class="exp">
+              <div class="st">Docs</div>
+              <h4>OCR / extract</h4>
+              <p>Archives and forms; finish the corpus, don’t sample-demo it.</p>
+            </div>
+            <div class="exp">
+              <div class="st">Vision</div>
+              <h4>Image pipelines</h4>
+              <p>Bulk gen and edits with automated QC gates.</p>
+            </div>
+            <div class="exp">
+              <div class="st">Other</div>
+              <h4>Shardable AI</h4>
+              <p>If it parallelizes and has a quality bar, we can scope it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiment">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-num">03 · Long experiment</div>
+          <h2>Four phases.<br /><em>One company.</em></h2>
+          <p>Applied work funds the path and keeps the research honest. The long goal is a company that largely runs itself — and methods others can reuse.</p>
+        </div>
+
+        <div class="phases">
+          <div class="phase current">
+            <div class="pl"><span class="dot"></span> Phase 01</div>
+            <div>
+              <h3>Foundation</h3>
+              <p>Stack + agents + batch systems that fund the experiment and prove basic loops.</p>
+            </div>
+            <div class="cur">Current</div>
+          </div>
+          <div class="phase dim">
+            <div class="pl"><span class="dot"></span> Phase 02</div>
+            <div>
+              <h3>Automation</h3>
+              <p>Hand recurring functions to agents and systems, highest-leverage first.</p>
+            </div>
+            <div></div>
+          </div>
+          <div class="phase dim">
+            <div class="pl"><span class="dot"></span> Phase 03</div>
+            <div>
+              <h3>Autonomy</h3>
+              <p>Company runs; founder on strategy and edges.</p>
+            </div>
+            <div></div>
+          </div>
+          <div class="phase dim">
+            <div class="pl"><span class="dot"></span> Phase 04</div>
+            <div>
+              <h3>Replication</h3>
+              <p>Publish the playbook and research findings. Others shouldn’t rebuild from myth.</p>
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="work-with-us">
+      <div class="wrap collab">
+        <div>
+          <div class="sec-num">04 · Plug into the experiment</div>
+          <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.85rem);font-weight:400;line-height:1.08;margin:0 0 14px">
+            Fund a proof.<br /><em>Or become one.</em>
+          </h2>
+          <p style="color:var(--muted);line-height:1.7;margin-bottom:12px;font-size:1.05rem">Tell us which company function an agent should own (research, competition, content, site, other) — or send a batch workload with volume, formats, cost pressure, and quality bar.</p>
+          <p style="color:var(--muted);line-height:1.7;margin-bottom:12px;font-size:0.98rem">You’ll get production systems. We’ll get evidence for the autonomy thesis. If it’s not a fit, we’ll say so quickly.</p>
+          <div class="collab-note">
+            Or book a 30-minute call.
+            <div style="margin-top:12px"><a class="btn btn-ghost" href="#">Book a call →</a></div>
+          </div>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Mock only — copy exploration.');">
+          <label>Work email<input type="email" required placeholder="you@company.com" /></label>
+          <label>Company / project<input type="text" placeholder="Optional" /></label>
+          <label>How do you want to plug in?
+            <select required>
+              <option value="">Select</option>
+              <option>Custom agent creation &amp; deployment</option>
+              <option>Distributed batch workload</option>
+              <option>Research / learning conversation</option>
+              <option>Unsure — point me</option>
+            </select>
+          </label>
+          <label>If batch — what shape?
+            <select>
+              <option value="">Optional</option>
+              <option>Transcription / speech</option>
+              <option>OCR / documents</option>
+              <option>Image generation or manipulation</option>
+              <option>Other distributable AI work</option>
+            </select>
+          </label>
+          <label>If agents — what function?
+            <select>
+              <option value="">Optional</option>
+              <option>Landscape research</option>
+              <option>Competition monitoring</option>
+              <option>Content creation</option>
+              <option>Website management</option>
+              <option>Other company function</option>
+            </select>
+          </label>
+          <label>What should we know?<textarea required placeholder="Volume, constraints, which function an agent should own…"></textarea></label>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="wrap">
+    <footer>
+      <span>© 2026 Autonomica · v02 copy</span>
+      <span>Experiment operational</span>
+    </footer>
+  </div>
+</body>
+</html>

@@ -3,33 +3,39 @@ import Link from "next/link"
 export default function SiteFooter() {
   return (
     <footer className="relative z-10 border-t border-white/[0.04] py-12">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+      <div className="container mx-auto max-w-[1180px] px-5">
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex items-center gap-3">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-lime-400" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c8f542] opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#c8f542]" />
             </span>
-            <span className="font-mono font-medium text-xs tracking-[0.15em] uppercase text-neutral-400">
+            <span className="font-mono text-xs font-medium uppercase tracking-[0.15em] text-[#b4bac4]">
               Autonomica
             </span>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <Link
-              href="/mission"
-              className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              href="/#lab"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#b4bac4] transition-colors hover:text-[#ece8df]"
             >
-              Mission
+              Thesis
             </Link>
             <Link
-              href="/systems"
-              className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              href="/#applied"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#b4bac4] transition-colors hover:text-[#ece8df]"
             >
-              Systems
+              Work
+            </Link>
+            <Link
+              href="/#work-with-us"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#b4bac4] transition-colors hover:text-[#ece8df]"
+            >
+              Contact
             </Link>
             <Link
               href="/blog"
-              className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#b4bac4] transition-colors hover:text-[#ece8df]"
             >
               Blog
             </Link>
@@ -37,7 +43,7 @@ export default function SiteFooter() {
               href="https://github.com/autonomica-xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#b4bac4] transition-colors hover:text-[#ece8df]"
             >
               Code
             </Link>
@@ -47,7 +53,7 @@ export default function SiteFooter() {
               href="https://x.com/AutonomicaAI"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="text-[#b4bac4] transition-colors hover:text-[#ece8df]"
             >
               <svg
                 width="16"
@@ -66,7 +72,7 @@ export default function SiteFooter() {
               href="https://github.com/autonomica-xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-400 hover:text-[#f0ece4] transition-colors"
+              className="text-[#b4bac4] transition-colors hover:text-[#ece8df]"
             >
               <svg
                 width="16"
@@ -84,10 +90,9 @@ export default function SiteFooter() {
             </Link>
           </div>
         </div>
-        <div className="mt-8 pt-6 border-t border-white/[0.04] text-center">
-          <span className="font-mono font-medium text-[11px] tracking-[0.15em] uppercase text-neutral-500">
-            &copy; {new Date().getFullYear()} Autonomica. All systems
-            operational.
+        <div className="mt-8 border-t border-white/[0.04] pt-6 text-center">
+          <span className="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-[#b4bac4]/80">
+            &copy; {new Date().getFullYear()} Autonomica · Experiment operational
           </span>
         </div>
       </div>

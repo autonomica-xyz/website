@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Autonomica — Design C: Product-Led Workloads</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #05070d;
+      --bg-2: #0a0e18;
+      --panel: #0f1422;
+      --line: rgba(120, 160, 255, 0.12);
+      --text: #e8ecf7;
+      --muted: #8b95b0;
+      --blue: #6ea8ff;
+      --cyan: #3ee0c5;
+      --warn: #fbbf24;
+      --sans: "Space Grotesk", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.5;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(110,168,255,0.15), transparent),
+        radial-gradient(ellipse 40% 30% at 90% 20%, rgba(62,224,197,0.08), transparent);
+      background-attachment: fixed;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1140px, calc(100% - 40px)); margin: 0 auto; }
+
+    .dir-banner {
+      position: sticky; top: 0; z-index: 100; background: #0c1220; border-bottom: 1px solid var(--line);
+      padding: 10px 20px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+    .dir-banner strong { color: var(--cyan); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .dir-banner span { color: var(--muted); font-size: 13px; }
+    .dir-banner nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    .dir-banner a {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 6px 10px; border: 1px solid var(--line); border-radius: 3px; color: var(--muted);
+    }
+    .dir-banner a.active, .dir-banner a:hover { color: var(--cyan); border-color: rgba(62,224,197,0.35); }
+
+    header {
+      border-bottom: 1px solid var(--line); background: rgba(5,7,13,0.8);
+      backdrop-filter: blur(16px); position: sticky; top: 42px; z-index: 50;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.02em; font-size: 1.05rem; }
+    .logo {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      display: grid; place-items: center; font-family: var(--mono); font-size: 12px; font-weight: 700; color: #05070d;
+    }
+    .nav-links { display: flex; gap: 22px; align-items: center; font-size: 0.92rem; color: var(--muted); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.9rem;
+      padding: 10px 16px; border-radius: 8px; border: 1px solid transparent; cursor: pointer; transition: 0.15s ease;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--blue), #4f8fff); color: #05070d; }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-ghost { border-color: var(--line); color: var(--text); background: rgba(255,255,255,0.03); }
+    .btn-cyan { background: var(--cyan); color: #04221c; }
+
+    .hero { padding: 64px 0 40px; text-align: center; }
+    .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 28px; }
+    .pill-row span {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(15,20,34,0.6);
+    }
+    .pill-row span b { color: var(--cyan); font-weight: 500; }
+    h1 {
+      font-size: clamp(2.3rem, 5.2vw, 3.8rem); font-weight: 600; letter-spacing: -0.04em;
+      line-height: 1.05; max-width: 18ch; margin: 0 auto 18px;
+    }
+    h1 .grad {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-lead { color: var(--muted); font-size: 1.15rem; max-width: 42rem; margin: 0 auto 28px; line-height: 1.65; }
+    .hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 22px; }
+    .social-proof {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; color: var(--muted); font-size: 0.9rem; margin-bottom: 8px;
+    }
+    .social-proof strong { color: var(--text); }
+
+    .demo {
+      margin: 40px auto 0;
+      background: linear-gradient(180deg, rgba(110,168,255,0.08), transparent 40%), var(--panel);
+      border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.45); text-align: left;
+    }
+    .demo-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 16px; border-bottom: 1px solid var(--line);
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+    }
+    .demo-dots { display: flex; gap: 6px; }
+    .demo-dots i { width: 8px; height: 8px; border-radius: 50%; background: #2a3348; display: block; }
+    .demo-dots i:nth-child(1) { background: #ff5f57; }
+    .demo-dots i:nth-child(2) { background: #febc2e; }
+    .demo-dots i:nth-child(3) { background: #28c840; }
+    .demo-grid { display: grid; grid-template-columns: 200px 1fr 220px; min-height: 340px; }
+    @media (max-width: 860px) {
+      .demo-grid { grid-template-columns: 1fr; }
+      .nav-links a:not(.btn) { display: none; }
+    }
+    .demo-side, .demo-right {
+      border-right: 1px solid var(--line); padding: 14px; background: rgba(0,0,0,0.2);
+    }
+    .demo-right { border-right: none; border-left: 1px solid var(--line); }
+    @media (max-width: 860px) {
+      .demo-side, .demo-right { border: none; border-bottom: 1px solid var(--line); }
+    }
+    .side-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px; border-radius: 8px; font-size: 13px; color: var(--muted); margin-bottom: 4px;
+    }
+    .side-item.on { background: rgba(110,168,255,0.1); color: var(--text); }
+    .main-pane { padding: 16px; }
+    .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .kpi {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 10px; padding: 12px;
+    }
+    .kpi b { display: block; font-size: 1.2rem; letter-spacing: -0.02em; }
+    .kpi span { font-family: var(--mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .row {
+      display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center;
+      padding: 12px; border: 1px solid var(--line); border-radius: 10px; margin-bottom: 8px;
+      font-size: 13px; background: rgba(255,255,255,0.02);
+    }
+    .tag {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 4px 8px; border-radius: 999px;
+    }
+    .tag-ok { background: rgba(62,224,197,0.12); color: var(--cyan); }
+    .tag-run { background: rgba(110,168,255,0.12); color: var(--blue); }
+    .tag-warn { background: rgba(251,191,36,0.12); color: var(--warn); }
+    .meter { height: 6px; background: #1a2235; border-radius: 99px; overflow: hidden; margin-top: 8px; }
+    .meter i { display: block; height: 100%; background: linear-gradient(90deg, var(--blue), var(--cyan)); border-radius: 99px; }
+
+    section { padding: 80px 0; }
+    .sec-head { text-align: center; max-width: 38rem; margin: 0 auto 40px; }
+    .sec-head .label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 12px;
+    }
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 600; letter-spacing: -0.03em;
+      line-height: 1.15; margin-bottom: 12px;
+    }
+    .sec-head p { color: var(--muted); }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px;
+    }
+    .card h3 { font-size: 1.35rem; margin: 8px 0 10px; letter-spacing: -0.02em; }
+    .card p { color: var(--muted); margin-bottom: 16px; }
+    .card ul { list-style: none; display: grid; gap: 10px; margin-bottom: 20px; font-size: 0.95rem; }
+    .card ul li { display: flex; gap: 10px; }
+    .card ul li::before { content: "▹"; color: var(--cyan); }
+    .card.featured {
+      background: linear-gradient(160deg, rgba(110,168,255,0.12), rgba(62,224,197,0.06)), var(--panel);
+      border-color: rgba(110,168,255,0.28);
+    }
+
+    .savings {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+      background: var(--bg-2); border: 1px solid var(--line); border-radius: 20px; padding: 40px;
+    }
+    @media (max-width: 800px) { .savings { grid-template-columns: 1fr; padding: 28px; } }
+    .savings .big {
+      font-size: clamp(3.2rem, 8vw, 5rem); font-weight: 700; letter-spacing: -0.05em;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 0.95;
+    }
+    .savings p { color: var(--muted); margin-top: 10px; max-width: 28rem; }
+
+    .modules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    @media (max-width: 900px) { .modules { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .modules { grid-template-columns: 1fr; } }
+    .mod {
+      border: 1px solid var(--line); border-radius: 14px; padding: 20px; background: rgba(15,20,34,0.6);
+    }
+    .mod .status {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 10px;
+    }
+    .mod h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .mod p { color: var(--muted); font-size: 0.92rem; }
+
+    .contact-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; }
+    @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } }
+    form {
+      display: grid; gap: 12px; background: var(--panel); border: 1px solid var(--line);
+      border-radius: 16px; padding: 24px;
+    }
+    label {
+      display: grid; gap: 6px; font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    }
+    input, select, textarea {
+      font: inherit; color: var(--text); background: var(--bg);
+      border: 1px solid var(--line); border-radius: 8px; padding: 12px;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: rgba(110,168,255,0.45); }
+    textarea { min-height: 100px; resize: vertical; }
+    footer {
+      border-top: 1px solid var(--line); padding: 28px 0 40px;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      color: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="dir-banner">
+    <div>
+      <strong>Direction C · Product-Led Workloads</strong>
+      <span>Osmantic structure · batch pipeline demo · dual commercial path</span>
+    </div>
+    <nav>
+      <a href="01-ops-control-plane.html">A · Dual Offer</a>
+      <a href="02-throughput-firm.html">B · Firm Packaging</a>
+      <a class="active" href="03-open-core-market.html">C · Product-Led</a>
+    </nav>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#"><span class="logo">A</span>Autonomica</a>
+      <div class="nav-links">
+        <a href="#product">Workloads</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#embed">White glove</a>
+        <a class="btn btn-ghost" href="https://github.com/autonomica-xyz" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn btn-primary" href="#contact">Send the workload</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="pill-row">
+        <span><b>Distributed batch AI</b></span>
+        <span>Transcription</span>
+        <span>OCR</span>
+        <span>Image gen / edit</span>
+        <span>White-glove AI-fication</span>
+      </div>
+      <h1>Cost-efficient AI for <span class="grad">volume that never stops</span></h1>
+      <p class="hero-lead">
+        Custom distributed systems for large-scale batch work — and white-glove embeds that turn
+        companies into force-multiplied operations. Designed around unit cost, not demo day.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-cyan" href="#solutions">View solutions</a>
+        <a class="btn btn-primary" href="#contact">Start a project →</a>
+      </div>
+      <div class="social-proof">
+        <span><strong>Batch-first</strong> · queues, workers, model ladders</span>
+        <span><strong>Cost-aware</strong> · $/item as a design constraint</span>
+        <span><strong>Embedded</strong> · white glove when the org needs leverage</span>
+      </div>
+
+      <div class="demo" id="product">
+        <div class="demo-bar">
+          <div class="demo-dots"><i></i><i></i><i></i></div>
+          <span>workload.autonomica · distributed runtime</span>
+          <span>cost-optimized · multi-worker</span>
+        </div>
+        <div class="demo-grid">
+          <div class="demo-side">
+            <div class="side-item on">Queues</div>
+            <div class="side-item">Workers</div>
+            <div class="side-item">Models</div>
+            <div class="side-item">Cost</div>
+            <div class="side-item">QC</div>
+            <div class="side-item">Routes</div>
+          </div>
+          <div class="main-pane">
+            <div class="kpi-row">
+              <div class="kpi"><b>2.4M</b><span>Items processed</span></div>
+              <div class="kpi"><b>$0.003</b><span>Avg cost / item</span></div>
+              <div class="kpi"><b>99.2%</b><span>Success rate</span></div>
+            </div>
+            <div class="row">
+              <div><strong>transcribe.media</strong><div style="color:var(--muted);font-size:12px">speech fleet · hybrid models</div></div>
+              <span class="tag tag-run">Running</span>
+              <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">412k/h</span>
+            </div>
+            <div class="row">
+              <div><strong>ocr.archives</strong><div style="color:var(--muted);font-size:12px">layout-aware extraction</div></div>
+              <span class="tag tag-ok">Healthy</span>
+              <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">91k/h</span>
+            </div>
+            <div class="row">
+              <div><strong>vision.batch</strong><div style="color:var(--muted);font-size:12px">gen · edit · QC score</div></div>
+              <span class="tag tag-warn">Ramping</span>
+              <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">18k/h</span>
+            </div>
+          </div>
+          <div class="demo-right">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Cost control</div>
+            <div style="margin-bottom:16px">
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Spot share</span><strong>64%</strong></div>
+              <div class="meter"><i style="width:64%"></i></div>
+            </div>
+            <div style="margin-bottom:16px">
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>vs API baseline</span><strong>−41%</strong></div>
+              <div class="meter"><i style="width:41%"></i></div>
+            </div>
+            <div style="margin-bottom:16px">
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Retry budget</span><strong>2.1%</strong></div>
+              <div class="meter"><i style="width:12%;background:#fbbf24"></i></div>
+            </div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.5;margin-top:8px">
+              Model ladders, region routing, and QC sampling keep quality while unit cost stays the north star.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap">
+        <div class="savings">
+          <div>
+            <div class="label" style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:10px">Cost control through architecture</div>
+            <div class="big">$/item</div>
+          </div>
+          <div>
+            <h2 style="text-align:left">Volume is only impressive if the economics hold.</h2>
+            <p>We design distributed AI workloads so throughput, retries, model choice, and infrastructure share one objective: the lowest sustainable cost per successful unit.</p>
+            <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:10px">
+              <a class="btn btn-primary" href="#contact">Talk unit economics</a>
+              <a class="btn btn-ghost" href="mailto:hello@autonomica.xyz">Prefer email?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="label">Solutions</div>
+          <h2>Two commercial paths.</h2>
+          <p>Industrialize a known batch workload — or embed us to AI-fy the company for force-multiplier outcomes.</p>
+        </div>
+        <div class="split">
+          <div class="card featured">
+            <div class="label" style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan)">01 · Systems</div>
+            <h3>Distributed workload automation</h3>
+            <p>Custom AI solutions for large-volume batch processing. Cost-efficient, distributed by design.</p>
+            <ul>
+              <li>Transcription / speech at scale</li>
+              <li>OCR and document pipelines</li>
+              <li>Image generation & manipulation</li>
+              <li>Any distributable AI batch job</li>
+            </ul>
+            <a class="btn btn-primary" href="#contact">Send the workload →</a>
+          </div>
+          <div class="card" id="embed">
+            <div class="label" style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">02 · Embed</div>
+            <h3>White-glove AI-fication</h3>
+            <p>We join the company, find leverage, ship systems, and transfer ownership — force multipliers, not workshops.</p>
+            <ul>
+              <li>Embedded discovery with operators</li>
+              <li>Highest-ROI interventions first</li>
+              <li>Production build + handoff</li>
+              <li>Outcomes measured in capacity, not tools</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contact">Start embed conversation →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="label">Workload classes</div>
+          <h2>If it can be distributed, we can industrialize it.</h2>
+          <p>Same pattern every time: shard → process → verify → control cost.</p>
+        </div>
+        <div class="modules">
+          <div class="mod">
+            <div class="status">AUDIO</div>
+            <h3>Transcription</h3>
+            <p>Media fleets, multilingual ladders, diarization, throughput SLAs.</p>
+          </div>
+          <div class="mod">
+            <div class="status">DOCS</div>
+            <h3>OCR & extract</h3>
+            <p>Archives, forms, layout-aware pipelines with sampling QC.</p>
+          </div>
+          <div class="mod">
+            <div class="status">VISION</div>
+            <h3>Image work</h3>
+            <p>Bulk gen, transforms, automated QC, human review only on edge cases.</p>
+          </div>
+          <div class="mod">
+            <div class="status">CUSTOM</div>
+            <h3>Your batch shape</h3>
+            <p>Any high-volume AI job where unit cost and distribution matter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <div class="label" style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:12px">Contact</div>
+          <h2 style="text-align:left">Send the workload.</h2>
+          <p style="color:var(--muted);margin:12px 0 20px;line-height:1.65">
+            Volume, formats, quality bar, current spend — or “embed with us to find force multipliers.” Short notes are fine.
+          </p>
+          <a class="btn btn-ghost" href="#">Book a call instead →</a>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Mock only.');">
+          <label>Work email<input required type="email" placeholder="you@company.com" /></label>
+          <label>Company<input type="text" placeholder="Optional" /></label>
+          <label>Primary goal
+            <select required>
+              <option value="">Select</option>
+              <option>Distributed workload automation</option>
+              <option>Transcription at scale</option>
+              <option>OCR / document pipelines</option>
+              <option>Image generation or manipulation</option>
+              <option>Other batch AI workload</option>
+              <option>White-glove AI-fication</option>
+              <option>Not sure — help us choose</option>
+            </select>
+          </label>
+          <label>What should we know?<textarea required placeholder="Volume, sample description, cost pressure…"></textarea></label>
+          <button class="btn btn-primary" type="submit">Send inquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="wrap">
+    <footer>
+      <span>© 2026 Autonomica · Design exploration C</span>
+      <span>Batch AI · white glove · dual funnel</span>
+    </footer>
+  </div>
+</body>
+</html>

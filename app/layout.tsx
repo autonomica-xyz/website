@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Syne, Figtree, JetBrains_Mono } from "next/font/google"
+import { Instrument_Serif, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ToastProvider } from "@/components/toast-provider"
@@ -8,25 +8,29 @@ import GoogleAnalytics from "@/components/google-analytics"
 import Script from "next/script"
 import { Suspense } from "react"
 
-const syne = Syne({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
   variable: "--font-display",
 })
 
-const figtree = Figtree({
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   variable: "--font-body",
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   variable: "--font-mono",
 })
 
 export const metadata: Metadata = {
-  title: "Autonomica — The Business That Builds Itself",
+  title: "Autonomica — Applied AI lab building companies that run themselves",
   description:
-    "Autonomica is an experimental company building tools, blueprints, and products to create the world's first fully AI-operated business.",
+    "Applied AI lab: custom agent creation and deployment (research, competition, content, website ops) and distributed batch AI. Production systems only — no pilots.",
   generator: "v0.app",
 }
 
@@ -39,7 +43,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${syne.variable} ${figtree.variable} ${jetbrainsMono.variable}`}
+      className={`${instrumentSerif.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}
     >
       <body className="font-body antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark">

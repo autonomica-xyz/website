@@ -1,15 +1,15 @@
 # Autonomica
 
-> The business that builds itself. One founder, infinite AI.
+> An applied AI lab building companies that run themselves.
 
-Autonomica is building the world's first fully AI-operated business. A single human founder sets direction while AI systems own the entire operational loop — from intake to execution to review. We build the tools we need, publish what we learn as open-source blueprints, and fund the mission through products that serve others on the same path.
+Autonomica ships production agents and systems — custom agent creation and deployment (landscape research, competition monitoring, content, website ops) and distributed batch AI when volume and unit cost are the constraint. The company itself is the long experiment in autonomous operations. Production only; no pilots. Patterns that hold get published.
 
 ## Pages
 
-- [Home](https://autonomica.xyz/): Overview of Autonomica's mission, four pillars, products, roadmap, and newsletter signup.
-- [Mission](https://autonomica.xyz/mission): Deep dive into the four pillars — autonomous operations, AI decision making, scalable growth, and open blueprints.
-- [Systems](https://autonomica.xyz/systems): The three products we're building — AI Operations Suite, Agents Managing Agents, and Blueprints & Marketplace.
-- [Blog](https://autonomica.xyz/blog): Updates and insights from inside the experiment.
+- [Home](https://autonomica.xyz/): Thesis, evidence tracks (agents + batch), experiment phases, contact form.
+- [Mission](https://autonomica.xyz/mission): Legacy deep dive on pillars and mission framing.
+- [Systems](https://autonomica.xyz/systems): Legacy product/systems detail.
+- [Blog](https://autonomica.xyz/blog): Field notes from inside the experiment.
 
 ## Markdown Versions
 
@@ -21,20 +21,21 @@ Append `.md` to any page URL to get a markdown version:
 - [Blog](https://autonomica.xyz/blog.md)
 - [Blog posts](https://autonomica.xyz/blog/{slug}.md)
 
-## Products
+## Evidence tracks
 
-- **AI Operations Suite** (IN DEVELOPMENT): Agent management dashboard for deploying, configuring, and monitoring AI agents at scale.
-- **Agents Managing Agents** (TESTING): Hierarchical orchestration where supervisor agents deploy, monitor, and coordinate worker agents.
-- **Blueprints & Marketplace** (PLANNED): Open-source runnable configurations — agent definitions, prompt templates, and deployment scripts others can fork and adapt.
+- **Custom agent creation & deployment**: Landscape research, competition monitoring, content creation, website management, and similar operating loops — tools, schedules, quality gates, handoff.
+- **Distributed workload automation**: Transcription, OCR, image pipelines, and other shardable AI under real unit-cost constraints.
 
 ## Roadmap
 
-- Phase 01 — Foundation (CURRENT): Building core AI systems and initial products.
-- Phase 02 — Automation: Transitioning operations from human to AI, one department at a time.
-- Phase 03 — Autonomy: Full AI autonomy with the founder as strategic guide.
-- Phase 04 — Replication: Sharing the blueprint for others to create autonomous companies.
+- Phase 01 — Foundation (CURRENT): Stack + agents + batch systems that fund the experiment and prove basic loops.
+- Phase 02 — Automation: Hand recurring functions to agents and systems, highest-leverage first.
+- Phase 03 — Autonomy: Company runs; founder on strategy and edges.
+- Phase 04 — Replication: Publish the playbook and research findings.
 
 ## Contact
 
 - Website: https://autonomica.xyz
+- Contact form: https://autonomica.xyz/#work-with-us
 - GitHub: https://github.com/autonomica-xyz
+- X/Twitter: https://x.com/AutonomicaAI
