@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
-import { ArrowDown } from "lucide-react"
+import { ArrowDown, ArrowRight } from "lucide-react"
 import ContactForm from "@/components/contact-form"
 import NavButton from "@/components/nav-button"
 import { Reveal } from "@/components/reveal"
@@ -352,6 +352,101 @@ export default function Home() {
       </section>
 
       <div className="relative z-10 h-px w-full bg-gradient-to-r from-transparent via-[rgba(200,245,66,0.2)] to-transparent" />
+
+      {/* ── Open source: distributed-gpu + dworker ──────────── */}
+      <section
+        id="open-source"
+        className="relative z-10 border-t border-white/[0.08] py-20 md:py-24"
+      >
+        <div className="container mx-auto max-w-[1180px] px-5">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-xl border border-[rgba(200,245,66,0.25)] bg-[#0e1014] p-7 md:p-12">
+              <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#c8f542] opacity-[0.07] blur-[100px]" />
+              <div className="relative grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+                <div>
+                  <div className="mb-4 flex flex-wrap items-center gap-3">
+                    <span className="rounded-full border border-[rgba(200,245,66,0.35)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[#c8f542]">
+                      new · open source
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#b4bac4]">
+                      controller gpl-3.0 · worker mit
+                    </span>
+                  </div>
+                  <h2 className="mb-3.5 font-display text-[clamp(2rem,3.5vw,2.85rem)] font-normal leading-[1.08]">
+                    My GPUs answer
+                    <br />
+                    to a <em className="italic text-[#c8f542]">queue</em> now.
+                  </h2>
+                  <p className="mb-7 max-w-xl text-[1.02rem] leading-[1.7] text-[#b4bac4]">
+                    I open-sourced the two tools I use to put spare and rented
+                    machines to work on boring jobs: transcription,
+                    translation, SDXL images, prompt batches. Placement by GPU,
+                    memory and installed models. Results checked before they
+                    count. Rented capacity ranked by cost to drain the queue,
+                    not by speed. Self-hosted, your hardware or rented.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <NavButton
+                      eventName="distributed_gpu_click"
+                      eventCategory="navigation"
+                      className="h-auto rounded bg-[#c8f542] px-[18px] py-3 font-mono text-xs font-medium uppercase tracking-[0.08em] text-[#0a0c08] hover:brightness-110"
+                      href="/distributed-gpu"
+                    >
+                      Distributed GPU
+                      <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                    </NavButton>
+                    <NavButton
+                      eventName="dgpu_github_click"
+                      eventCategory="navigation"
+                      variant="outline"
+                      className="h-auto rounded border-white/10 bg-transparent px-[18px] py-3 font-mono text-xs font-medium uppercase tracking-[0.08em] text-[#ece8df] hover:bg-white/[0.03]"
+                      href="https://github.com/autonomica-xyz/distributed-gpu"
+                    >
+                      View on GitHub
+                    </NavButton>
+                  </div>
+                </div>
+
+                <div
+                  className="overflow-hidden rounded-xl border border-white/[0.08] shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #12161d 0%, #0b0d11 100%)",
+                  }}
+                  aria-label="distributed-gpu and dworker"
+                >
+                  <div className="border-b border-white/[0.08] bg-white/[0.02] px-3.5 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#b4bac4]">
+                    open source · self-hosted
+                  </div>
+                  <div className="grid gap-3 p-4">
+                    <div className="space-y-0.5 font-mono text-[11px] leading-[1.7] text-[#b4bac4]">
+                      <div>&gt; dgpu serve</div>
+                      <div>&gt; queue: durable · sqlite</div>
+                      <div>
+                        &gt; placement: <span className="text-[#c8f542]">vram · model · labels</span>
+                      </div>
+                    </div>
+                    <div className="grid gap-2">
+                      <div className="rounded-md border border-white/[0.08] bg-black/25 px-3 py-2.5">
+                        <div className="font-mono text-xs">distributed-gpu</div>
+                        <div className="mt-0.5 text-xs text-[#b4bac4]">
+                          The controller: queue, placement, validated results
+                        </div>
+                      </div>
+                      <div className="rounded-md border border-white/[0.08] bg-black/25 px-3 py-2.5">
+                        <div className="font-mono text-xs">dworker</div>
+                        <div className="mt-0.5 text-xs text-[#b4bac4]">
+                          The worker: NVIDIA, AMD or CPU · can wait until idle
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       {/* ── Thesis ───────────────────────────────────────────── */}
       <section id="lab" className="relative z-10 border-t border-white/[0.08] py-20 md:py-24">

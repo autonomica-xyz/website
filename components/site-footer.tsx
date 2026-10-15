@@ -40,6 +40,12 @@ export default function SiteFooter() {
               Blog
             </Link>
             <Link
+              href="/distributed-gpu"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#b4bac4] transition-colors hover:text-[#ece8df]"
+            >
+              Distributed GPU
+            </Link>
+            <Link
               href="https://github.com/autonomica-xyz"
               target="_blank"
               rel="noopener noreferrer"
