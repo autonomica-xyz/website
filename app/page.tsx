@@ -353,7 +353,7 @@ export default function Home() {
 
       <div className="relative z-10 h-px w-full bg-gradient-to-r from-transparent via-[rgba(200,245,66,0.2)] to-transparent" />
 
-      {/* ── Open source: distributed-gpu + dworker ──────────── */}
+      {/* ── Open source: Moonshift (distributed-gpu + dworker) ──────────── */}
       <section
         id="open-source"
         className="relative z-10 border-t border-white/[0.08] py-20 md:py-24"
@@ -373,9 +373,9 @@ export default function Home() {
                     </span>
                   </div>
                   <h2 className="mb-3.5 font-display text-[clamp(2rem,3.5vw,2.85rem)] font-normal leading-[1.08]">
-                    My GPUs answer
+                    Moonshift: my GPUs take
                     <br />
-                    to a <em className="italic text-[#c8f542]">queue</em> now.
+                    the <em className="italic text-[#c8f542]">night shift</em> now.
                   </h2>
                   <p className="mb-7 max-w-xl text-[1.02rem] leading-[1.7] text-[#b4bac4]">
                     I open-sourced the two tools I use to put spare and rented
@@ -387,12 +387,12 @@ export default function Home() {
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <NavButton
-                      eventName="distributed_gpu_click"
+                      eventName="moonshift_click"
                       eventCategory="navigation"
                       className="h-auto rounded bg-[#c8f542] px-[18px] py-3 font-mono text-xs font-medium uppercase tracking-[0.08em] text-[#0a0c08] hover:brightness-110"
-                      href="/distributed-gpu"
+                      href="/moonshift"
                     >
-                      Distributed GPU
+                      Moonshift
                       <ArrowRight className="ml-2 h-3.5 w-3.5" />
                     </NavButton>
                     <NavButton
@@ -413,10 +413,10 @@ export default function Home() {
                     background:
                       "linear-gradient(180deg, #12161d 0%, #0b0d11 100%)",
                   }}
-                  aria-label="distributed-gpu and dworker"
+                  aria-label="Moonshift: distributed-gpu and dworker"
                 >
                   <div className="border-b border-white/[0.08] bg-white/[0.02] px-3.5 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#b4bac4]">
-                    open source · self-hosted
+                    moonshift · open source · self-hosted
                   </div>
                   <div className="grid gap-3 p-4">
                     <div className="space-y-0.5 font-mono text-[11px] leading-[1.7] text-[#b4bac4]">

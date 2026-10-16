@@ -9,14 +9,14 @@ import { Reveal } from "@/components/reveal"
 import NavButton from "@/components/nav-button"
 
 export const metadata: Metadata = {
-  title: "Distributed GPU - Autonomica",
+  title: "Moonshift - Autonomica",
   description:
-    "Self-hosted job queue for your own and rented GPUs, plus the worker that lends them. Bundled routes for SDXL images, Qwen prompt batches, transcription and translation. Open source.",
+    "Moonshift: a self-hosted job queue for your own and rented GPUs, plus the worker that lends them. Your GPUs take the night shift. Bundled routes for SDXL images, Qwen prompt batches, transcription and translation. Open source.",
   openGraph: {
-    title: "Distributed GPU - Autonomica",
+    title: "Moonshift - Autonomica",
     description:
-      "Self-hosted job queue for your own and rented GPUs, plus the worker that lends them. Bundled routes for SDXL images, Qwen prompt batches, transcription and translation. Open source.",
-    url: "https://autonomica.xyz/distributed-gpu",
+      "Moonshift: a self-hosted job queue for your own and rented GPUs, plus the worker that lends them. Your GPUs take the night shift. Bundled routes for SDXL images, Qwen prompt batches, transcription and translation. Open source.",
+    url: "https://autonomica.xyz/moonshift",
     siteName: "Autonomica",
   },
 }
@@ -126,7 +126,7 @@ const steps = [
   },
 ]
 
-export default function DistributedGpuPage() {
+export default function MoonshiftPage() {
   return (
     <div className="min-h-screen bg-[#050505] text-[#f0ece4] relative overflow-x-hidden">
       {/* Dot grid background */}
@@ -139,7 +139,7 @@ export default function DistributedGpuPage() {
         }}
       />
 
-      <SiteNav currentPage="distributed gpu" />
+      <SiteNav currentPage="moonshift" />
 
       {/* Page Header */}
       <section className="relative z-10 pt-32 md:pt-40 pb-16 md:pb-24">
@@ -151,11 +151,11 @@ export default function DistributedGpuPage() {
           <div className="max-w-3xl">
             <Reveal>
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-10">
-                Spare GPUs,
+                Moonshift.
                 <br />
-                boring jobs,
+                Your GPUs take
                 <br />
-                <em className="italic text-neutral-400">one queue.</em>
+                <em className="italic text-neutral-400">the night shift.</em>
               </h1>
             </Reveal>
             <Reveal delay={100}>
@@ -169,9 +169,10 @@ export default function DistributedGpuPage() {
             </Reveal>
             <Reveal delay={200}>
               <p className="text-neutral-300 text-lg md:text-xl leading-relaxed mb-10">
-                distributed-gpu is the controller. dworker is the worker that
-                lends a machine&apos;s capacity. Self-hosted. Your machines,
-                rented ones, or both.
+                Moonshift is two pieces: the controller (the distributed-gpu
+                repo) and the worker that lends a machine&apos;s capacity (the
+                dworker repo). Self-hosted. Your machines, rented ones, or
+                both.
               </p>
             </Reveal>
             <Reveal delay={300}>

@@ -4,6 +4,11 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  async redirects() {
+    return [
+      { source: "/distributed-gpu", destination: "/moonshift", permanent: true },
+    ]
+  },
   images: {
     unoptimized: true,
   },

@@ -40,10 +40,10 @@ export default function SiteFooter() {
               Blog
             </Link>
             <Link
-              href="/distributed-gpu"
+              href="/moonshift"
               className="font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#b4bac4] transition-colors hover:text-[#ece8df]"
             >
-              Distributed GPU
+              Moonshift
             </Link>
             <Link
               href="https://github.com/autonomica-xyz"
