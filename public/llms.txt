@@ -9,7 +9,7 @@ Autonomica ships production agents and systems — custom agent creation and dep
 - [Home](https://autonomica.xyz/): Thesis, evidence tracks (agents + batch), experiment phases, contact form.
 - [Mission](https://autonomica.xyz/mission): Legacy deep dive on pillars and mission framing.
 - [Systems](https://autonomica.xyz/systems): Legacy product/systems detail.
-- [Sparehour](https://autonomica.xyz/sparehour): Open-source, self-hosted job queue for your own and rented GPUs (controller: sparehour, GPL-3.0; worker: sparehour-worker, MIT).
+- [Sparehour](https://autonomica.xyz/sparehour): Open-source, self-hosted queue for batch AI jobs across your own machines and rented GPUs (controller: sparehour, GPL-3.0; worker: sparehour-worker, MIT).
 
 ## Markdown Versions
 

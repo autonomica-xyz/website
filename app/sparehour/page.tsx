@@ -11,11 +11,11 @@ import NavButton from "@/components/nav-button"
 export const metadata: Metadata = {
   title: "Sparehour - Autonomica",
   description:
-    "Sparehour: a self-hosted job queue for your own and rented GPUs, plus the worker that lends them. Your GPUs' spare hours, put to work. Bundled routes for SDXL images, Qwen prompt batches, transcription and translation. Open source.",
+    "An open-source, self-hosted queue for batch AI jobs across your own machines and rented GPUs. Run transcription, translation, image generation, and prompt batches with compatible workers.",
   openGraph: {
     title: "Sparehour - Autonomica",
     description:
-      "Sparehour: a self-hosted job queue for your own and rented GPUs, plus the worker that lends them. Your GPUs' spare hours, put to work. Bundled routes for SDXL images, Qwen prompt batches, transcription and translation. Open source.",
+      "An open-source, self-hosted queue for batch AI jobs across your own machines and rented GPUs. Run transcription, translation, image generation, and prompt batches with compatible workers.",
     url: "https://autonomica.xyz/sparehour",
     siteName: "Autonomica",
   },
@@ -64,27 +64,27 @@ const routes = [
 const boundaries = [
   {
     label: "Private inputs",
-    desc: "A worker can fetch a job's input only while it holds that job. The audio you sent for transcription doesn't sit around on every machine in the fleet.",
+    desc: "Workers can download job inputs only while holding an active lease for that job.",
   },
   {
-    label: "Provider keys stay put",
-    desc: "Keys for rented GPU providers live on the controller. They never reach a worker.",
+    label: "Provider credentials",
+    desc: "Credentials for rented GPU providers stay on the controller, never on workers.",
   },
   {
     label: "Jobs carry data, not code",
-    desc: "What runs on a worker comes from route definitions on the controller, not from the job payload. A submitter can't run arbitrary code on someone else's machine.",
+    desc: "Workloads define trusted executors. Job submissions supply data, not executable code.",
   },
   {
     label: "Pinned models",
-    desc: "Every bundled model is locked to an exact snapshot and checked file by file against SHA-256 hashes before it loads. If the weights changed, the job doesn't run.",
+    desc: "Bundled model versions are pinned. Their files are verified with SHA-256 before loading.",
   },
 ]
 
 const limits = [
-  "Not for training, and it doesn't split one model across GPUs. One GPU runs one job.",
-  "The bundled ML routes target NVIDIA today. AMD and CPU machines work with jobs you set up yourself.",
-  "No PyPI package. Install is from source for now.",
-  "Not a hosted service. You run the controller and the workers yourself.",
+  "Batch jobs, not training or model sharding. Each GPU runs one job at a time.",
+  "Bundled ML workloads require NVIDIA. AMD and CPU workers need compatible custom workloads.",
+  "Install from source. The packages are not published on PyPI.",
+  "Self-hosted, not a hosted service. You run the controller and workers.",
 ]
 
 const steps = [
@@ -105,7 +105,7 @@ const steps = [
   },
   {
     n: "04",
-    title: "Enlist a worker",
+    title: "Connect a worker",
     desc: "sparehour-worker login, sparehour-worker doctor, sparehour-worker select, sparehour-worker run. The worker dashboard opens on the machine itself.",
   },
 ]
@@ -144,19 +144,16 @@ export default function SparehourPage() {
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-lg md:text-xl leading-relaxed mb-6">
-                I run Autonomica, and a lot of my work is a pile of small,
-                independent jobs: transcribe these calls, translate these
-                documents, generate these images. Today I&apos;m open-sourcing
-                the two tools I use to match that backlog with the GPUs around
-                me.
+                Sparehour runs batch AI jobs across your own machines and rented
+                GPUs. Queue transcription, translation, image generation, or
+                prompt batches, and let available workers pick up compatible jobs.
               </p>
             </Reveal>
             <Reveal delay={200}>
               <p className="text-neutral-300 text-lg md:text-xl leading-relaxed mb-10">
-                Sparehour is two pieces: the controller (the sparehour repo)
-                and the worker that lends a machine&apos;s capacity (the
-                sparehour-worker repo). Self-hosted. Your machines, rented
-                ones, or both.
+                The controller manages the queue. Sparehour Worker runs jobs on
+                each machine, with controls for which workloads it accepts and
+                when it works. Open source and self-hosted.
               </p>
             </Reveal>
             <Reveal delay={300}>
@@ -202,8 +199,8 @@ export default function SparehourPage() {
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
-                The controller never runs a job itself. The worker never talks
-                to a submitter. Each one does one thing.
+                Submit jobs to the controller. Workers pick them up when compatible
+                capacity is available, then return the results.
               </p>
             </Reveal>
           </div>
@@ -220,10 +217,10 @@ export default function SparehourPage() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "A self-hosted controller with a durable SQLite queue: retries, leases, cancellation. Submit a job once and it waits until a capable machine is free.",
-                    "Placement by VRAM, GPU model, compute capability, labels, capabilities and installed model packs. No job lands on a card that would just fail.",
-                    "Results are validated against the route's spec before they count.",
-                    "A read-only planner ranks rented offers from Vast and Salad by expected total cost to drain the queue, not by speed alone. Deploys need operator confirmation.",
+                    "Keep jobs in a durable queue, with retries and cancellation.",
+                    "Match jobs to workers by hardware, workload support, and installed models.",
+                    "Validate results against each workload's output requirements.",
+                    "Compare Vast and Salad offers by estimated queue completion cost. Deployment requires your approval.",
                   ].map((line) => (
                     <li key={line} className="flex gap-3">
                       <span className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-[#c8f542]" />
@@ -247,11 +244,11 @@ export default function SparehourPage() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Lends NVIDIA, AMD (read straight from sysfs) or CPU capacity to the queue. One physical GPU is one slot.",
-                    "Shows which routes this machine can serve and why, and lets you choose capabilities with live toggles.",
-                    "Idle gating that fails closed: it can wait for a locked screen or a quiet machine, and if it can't tell whether you're there, it assumes you are and takes nothing.",
-                    "Pausing stops it taking new jobs. A job that already started always finishes.",
-                    "A loopback-only dashboard on the machine itself.",
+                    "Contribute NVIDIA, AMD, or CPU capacity.",
+                    "See which workloads your machine supports and choose what it accepts.",
+                    "Enable idle-only mode to accept work only when the machine is confirmed idle.",
+                    "Pause new jobs without interrupting work already in progress.",
+                    "Manage the worker from a dashboard accessible only on the local machine.",
                   ].map((line) => (
                     <li key={line} className="flex gap-3">
                       <span className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-[#c8f542]" />
@@ -323,8 +320,8 @@ export default function SparehourPage() {
                   <em className="italic text-neutral-400">with.</em>
                 </h2>
                 <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
-                  Bundled routes cover the batch work I actually run. You can
-                  add your own job types, including plain CPU work.
+                  Start with the bundled workloads or define your own,
+                  including CPU jobs.
                 </p>
               </Reveal>
             </div>
@@ -374,7 +371,7 @@ export default function SparehourPage() {
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
-                The boundaries are in the design, not in a policy document.
+                How job inputs, credentials, and models are handled.
               </p>
             </Reveal>
           </div>

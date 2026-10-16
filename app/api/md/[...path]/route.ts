@@ -69,9 +69,26 @@ Tools we build as we need them. While building our autonomous company, we create
 function getSparehourPage(): string {
   return `# Sparehour — Autonomica
 
-> A self-hosted job queue for your own and rented GPUs, plus the worker that lends them. Your GPUs' spare hours, put to work.
+> Batch AI jobs across your own machines and rented GPUs. Open source and self-hosted.
 
-Sparehour is two pieces: the controller ([sparehour](https://github.com/autonomica-xyz/sparehour), GPL-3.0-or-later) and the worker that lends a machine's capacity ([sparehour-worker](https://github.com/autonomica-xyz/sparehour-worker), MIT). Self-hosted — your machines, rented ones, or both.
+Sparehour runs batch AI jobs across your own machines and rented GPUs. Queue transcription, translation, image generation, or prompt batches, and let available workers pick up compatible jobs.
+
+The controller manages the queue. Sparehour Worker runs jobs on each machine, with controls for which workloads it accepts and when it works.
+
+## Controller
+
+- Keep jobs in a durable queue, with retries and cancellation.
+- Match jobs to workers by hardware, workload support, and installed models.
+- Validate results against each workload's output requirements.
+- Compare Vast and Salad offers by estimated queue completion cost. Deployment requires your approval.
+
+## Worker
+
+- Contribute NVIDIA, AMD, or CPU capacity.
+- See which workloads your machine supports and choose what it accepts.
+- Enable idle-only mode to accept work only when the machine is confirmed idle.
+- Pause new jobs without interrupting work already in progress.
+- Manage the worker from a dashboard accessible only on the local machine.
 
 ## Bundled routes
 
@@ -84,16 +101,17 @@ You can add your own job types, including plain CPU work.
 
 ## Trust boundaries
 
-- Workers fetch a job's input only while they hold that job.
-- Provider keys for rented GPUs stay on the controller and never reach a worker.
-- Jobs carry data, not code; what runs comes from route definitions on the controller.
-- Every bundled model is pinned to an exact snapshot and checked file by file against SHA-256 hashes before it loads.
+- Workers can download job inputs only while holding an active lease for that job.
+- Credentials for rented GPU providers stay on the controller, never on workers.
+- Workloads define trusted executors. Job submissions supply data, not executable code.
+- Bundled model versions are pinned. Their files are verified with SHA-256 before loading.
 
 ## Limits
 
-- Not for training; doesn't split one model across GPUs. One GPU runs one job.
-- Bundled ML routes target NVIDIA today. AMD and CPU machines work with jobs you set up yourself.
-- No PyPI package; install is from source for now.
+- Batch jobs, not training or model sharding. Each GPU runs one job at a time.
+- Bundled ML workloads require NVIDIA. AMD and CPU workers need compatible custom workloads.
+- Install from source. The packages are not published on PyPI.
+- Self-hosted, not a hosted service. You run the controller and workers.
 
 ## Getting started
 
@@ -105,8 +123,8 @@ You can add your own job types, including plain CPU work.
 ## Links
 
 - [Product page](/sparehour)
-- [sparehour on GitHub](https://github.com/autonomica-xyz/sparehour)
-- [sparehour-worker on GitHub](https://github.com/autonomica-xyz/sparehour-worker)
+- [Sparehour controller](https://github.com/autonomica-xyz/sparehour) — GPL-3.0-or-later
+- [Sparehour Worker](https://github.com/autonomica-xyz/sparehour-worker) — MIT
 `
 }
 

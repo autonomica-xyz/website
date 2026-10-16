@@ -366,24 +366,22 @@ export default function Home() {
                 <div>
                   <div className="mb-4 flex flex-wrap items-center gap-3">
                     <span className="rounded-full border border-[rgba(200,245,66,0.35)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[#c8f542]">
-                      new · open source
+                      open source
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#b4bac4]">
                       controller gpl-3.0 · worker mit
                     </span>
                   </div>
                   <h2 className="mb-3.5 font-display text-[clamp(2rem,3.5vw,2.85rem)] font-normal leading-[1.08]">
-                    Sparehour: my GPUs&apos;
+                    Sparehour: your GPUs&apos;
                     <br />
                     <em className="italic text-[#c8f542]">spare hours</em>, put to work.
                   </h2>
                   <p className="mb-7 max-w-xl text-[1.02rem] leading-[1.7] text-[#b4bac4]">
-                    I open-sourced the two tools I use to put spare and rented
-                    machines to work on boring jobs: transcription,
-                    translation, SDXL images, prompt batches. Placement by GPU,
-                    memory and installed models. Results checked before they
-                    count. Rented capacity ranked by cost to drain the queue,
-                    not by speed. Self-hosted, your hardware or rented.
+                    Run transcription, translation, image generation, and prompt
+                    batches across your own machines or rented GPUs. Sparehour
+                    queues the work, matches jobs to compatible workers, and
+                    validates the results. Open source and self-hosted.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <NavButton
