@@ -9,7 +9,7 @@ Autonomica ships production agents and systems — custom agent creation and dep
 - [Home](https://autonomica.xyz/): Thesis, evidence tracks (agents + batch), experiment phases, contact form.
 - [Mission](https://autonomica.xyz/mission): Legacy deep dive on pillars and mission framing.
 - [Systems](https://autonomica.xyz/systems): Legacy product/systems detail.
-- [Blog](https://autonomica.xyz/blog): Field notes from inside the experiment.
+- [Sparehour](https://autonomica.xyz/sparehour): Open-source, self-hosted job queue for your own and rented GPUs (controller: sparehour, GPL-3.0; worker: sparehour-worker, MIT).
 
 ## Markdown Versions
 
@@ -18,6 +18,7 @@ Append `.md` to any page URL to get a markdown version:
 - [Home](https://autonomica.xyz/.md)
 - [Mission](https://autonomica.xyz/mission.md)
 - [Systems](https://autonomica.xyz/systems.md)
+- [Sparehour](https://autonomica.xyz/sparehour.md)
 - [Blog](https://autonomica.xyz/blog.md)
 - [Blog posts](https://autonomica.xyz/blog/{slug}.md)
 
@@ -38,4 +39,5 @@ Append `.md` to any page URL to get a markdown version:
 - Website: https://autonomica.xyz
 - Contact form: https://autonomica.xyz/#work-with-us
 - GitHub: https://github.com/autonomica-xyz
-- X/Twitter: https://x.com/AutonomicaAI
+- [Sparehour (controller)](https://github.com/autonomica-xyz/sparehour)
+- [Sparehour Worker](https://github.com/autonomica-xyz/sparehour-worker)

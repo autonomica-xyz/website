@@ -353,7 +353,7 @@ export default function Home() {
 
       <div className="relative z-10 h-px w-full bg-gradient-to-r from-transparent via-[rgba(200,245,66,0.2)] to-transparent" />
 
-      {/* ── Open source: Sparehour (distributed-gpu + dworker) ──────────── */}
+      {/* ── Open source: Sparehour (controller + worker) ─────────────── */}
       <section
         id="open-source"
         className="relative z-10 border-t border-white/[0.08] py-20 md:py-24"
@@ -396,11 +396,11 @@ export default function Home() {
                       <ArrowRight className="ml-2 h-3.5 w-3.5" />
                     </NavButton>
                     <NavButton
-                      eventName="dgpu_github_click"
+                      eventName="sparehour_github_click"
                       eventCategory="navigation"
                       variant="outline"
                       className="h-auto rounded border-white/10 bg-transparent px-[18px] py-3 font-mono text-xs font-medium uppercase tracking-[0.08em] text-[#ece8df] hover:bg-white/[0.03]"
-                      href="https://github.com/autonomica-xyz/distributed-gpu"
+                      href="https://github.com/autonomica-xyz/sparehour"
                     >
                       View on GitHub
                     </NavButton>
@@ -413,14 +413,14 @@ export default function Home() {
                     background:
                       "linear-gradient(180deg, #12161d 0%, #0b0d11 100%)",
                   }}
-                  aria-label="Sparehour: distributed-gpu and dworker"
+                  aria-label="Sparehour: controller and worker"
                 >
                   <div className="border-b border-white/[0.08] bg-white/[0.02] px-3.5 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#b4bac4]">
                     sparehour · open source · self-hosted
                   </div>
                   <div className="grid gap-3 p-4">
                     <div className="space-y-0.5 font-mono text-[11px] leading-[1.7] text-[#b4bac4]">
-                      <div>&gt; dgpu serve</div>
+                      <div>&gt; sparehour serve</div>
                       <div>&gt; queue: durable · sqlite</div>
                       <div>
                         &gt; placement: <span className="text-[#c8f542]">vram · model · labels</span>
@@ -428,13 +428,13 @@ export default function Home() {
                     </div>
                     <div className="grid gap-2">
                       <div className="rounded-md border border-white/[0.08] bg-black/25 px-3 py-2.5">
-                        <div className="font-mono text-xs">distributed-gpu</div>
+                        <div className="font-mono text-xs">sparehour</div>
                         <div className="mt-0.5 text-xs text-[#b4bac4]">
                           The controller: queue, placement, validated results
                         </div>
                       </div>
                       <div className="rounded-md border border-white/[0.08] bg-black/25 px-3 py-2.5">
-                        <div className="font-mono text-xs">dworker</div>
+                        <div className="font-mono text-xs">sparehour-worker</div>
                         <div className="mt-0.5 text-xs text-[#b4bac4]">
                           The worker: NVIDIA, AMD or CPU · can wait until idle
                         </div>
@@ -523,7 +523,7 @@ export default function Home() {
           </Reveal>
 
           <p className="mb-7 font-mono text-xs text-[#b4bac4]">
-            // evidence · agents first · batch when volume demands it
+            {"// evidence · agents first · batch when volume demands it"}
           </p>
 
           <div className="border-t border-white/[0.08]">

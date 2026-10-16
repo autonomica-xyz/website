@@ -21,36 +21,20 @@ export const metadata: Metadata = {
   },
 }
 
-const REPO_CONTROLLER = "https://github.com/autonomica-xyz/distributed-gpu"
-const REPO_WORKER = "https://github.com/autonomica-xyz/distributed-worker"
+const REPO_CONTROLLER = "https://github.com/autonomica-xyz/sparehour"
+const REPO_WORKER = "https://github.com/autonomica-xyz/sparehour-worker"
 
-const demos = [
-  {
-    src: "/distributed-gpu/videos/controller-demo.mp4",
-    poster: "/distributed-gpu/videos/controller-demo-poster.png",
-    label: "controller-demo.mp4",
-    caption:
-      "The controller workbench: the queue, a job finding a worker, and the result coming back checked.",
-  },
-  {
-    src: "/distributed-gpu/videos/worker-demo.mp4",
-    poster: "/distributed-gpu/videos/worker-demo-poster.png",
-    label: "worker-demo.mp4",
-    caption:
-      "dworker inventorying a machine, showing which routes it can serve, and pausing without killing the running job.",
-  },
-]
 
 const screenshots = [
   {
-    src: "/distributed-gpu/screenshots/controller-dashboard.png",
+    src: "/sparehour/screenshots/controller-dashboard.png",
     label: "controller · /dashboard",
-    alt: "distributed-gpu controller dashboard showing the queue and fleet",
+    alt: "Sparehour controller dashboard showing the queue and fleet",
   },
   {
-    src: "/distributed-gpu/screenshots/worker-dashboard.png",
+    src: "/sparehour/screenshots/worker-dashboard.png",
     label: "worker · loopback",
-    alt: "dworker dashboard showing the machine's slots and matching routes",
+    alt: "Sparehour Worker dashboard showing the machine's slots and matching routes",
   },
 ]
 
@@ -100,7 +84,7 @@ const limits = [
   "Not for training, and it doesn't split one model across GPUs. One GPU runs one job.",
   "The bundled ML routes target NVIDIA today. AMD and CPU machines work with jobs you set up yourself.",
   "No PyPI package. Install is from source for now.",
-  "The demo videos are edited for length. They're demos, not latency benchmarks.",
+  "Not a hosted service. You run the controller and the workers yourself.",
 ]
 
 const steps = [
@@ -117,12 +101,12 @@ const steps = [
   {
     n: "03",
     title: "Start the controller",
-    desc: "dgpu serve brings up the queue and the workbench at /dashboard. Issue a scoped token with dgpu token.",
+    desc: "sparehour serve brings up the queue and the workbench at /dashboard. Issue a scoped token with sparehour token.",
   },
   {
     n: "04",
     title: "Enlist a worker",
-    desc: "dworker login, dworker doctor, dworker select, dworker run. The worker dashboard opens on the machine itself.",
+    desc: "sparehour-worker login, sparehour-worker doctor, sparehour-worker select, sparehour-worker run. The worker dashboard opens on the machine itself.",
   },
 ]
 
@@ -169,60 +153,37 @@ export default function SparehourPage() {
             </Reveal>
             <Reveal delay={200}>
               <p className="text-neutral-300 text-lg md:text-xl leading-relaxed mb-10">
-                Sparehour is two pieces: the controller (the distributed-gpu
-                repo) and the worker that lends a machine&apos;s capacity (the
-                dworker repo). Self-hosted. Your machines, rented ones, or
-                both.
+                Sparehour is two pieces: the controller (the sparehour repo)
+                and the worker that lends a machine&apos;s capacity (the
+                sparehour-worker repo). Self-hosted. Your machines, rented
+                ones, or both.
               </p>
             </Reveal>
             <Reveal delay={300}>
               <div className="flex flex-wrap gap-3">
                 <NavButton
-                  eventName="dgpu_repo_click"
+                  eventName="sparehour_repo_click"
                   eventCategory="navigation"
                   className="h-auto rounded bg-[#c8f542] px-[18px] py-3 font-mono text-xs font-medium uppercase tracking-[0.08em] text-[#0a0c08] hover:brightness-110"
                   href={REPO_CONTROLLER}
                 >
-                  distributed-gpu
+                  sparehour
                   <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
                 </NavButton>
                 <NavButton
-                  eventName="dworker_repo_click"
+                  eventName="sparehour_worker_repo_click"
                   eventCategory="navigation"
                   variant="outline"
                   className="h-auto rounded border-white/10 bg-transparent px-[18px] py-3 font-mono text-xs font-medium uppercase tracking-[0.08em] text-[#ece8df] hover:bg-white/[0.03]"
                   href={REPO_WORKER}
                 >
-                  dworker
+                  sparehour-worker
                   <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
                 </NavButton>
               </div>
             </Reveal>
           </div>
 
-          {/* Overview video */}
-          <Reveal delay={200}>
-            <figure className="mt-16 max-w-4xl">
-              <div className="overflow-hidden rounded-xl border border-white/[0.08] bg-black/40">
-                <video
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster="/distributed-gpu/videos/overview-poster.png"
-                  className="aspect-video w-full"
-                >
-                  <source
-                    src="/distributed-gpu/videos/overview.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
-              <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-neutral-500">
-                overview.mp4 · captions burned in · edited for length, not a
-                latency benchmark
-              </figcaption>
-            </figure>
-          </Reveal>
         </div>
       </section>
 
@@ -255,7 +216,7 @@ export default function SparehourPage() {
                   The controller
                 </div>
                 <h3 className="font-display text-2xl md:text-3xl mb-6">
-                  distributed-gpu
+                  sparehour
                 </h3>
                 <ul className="space-y-4">
                   {[
@@ -282,7 +243,7 @@ export default function SparehourPage() {
                   The worker
                 </div>
                 <h3 className="font-display text-2xl md:text-3xl mb-6">
-                  dworker
+                  sparehour-worker
                 </h3>
                 <ul className="space-y-4">
                   {[
@@ -306,7 +267,7 @@ export default function SparehourPage() {
         </div>
       </section>
 
-      {/* Demos + screenshots */}
+      {/* Screenshots */}
       <div className="relative z-10 w-full h-px bg-gradient-to-r from-transparent via-lime-400/20 to-transparent" />
 
       <section className="relative z-10 py-24 md:py-32">
@@ -314,46 +275,18 @@ export default function SparehourPage() {
           <div className="mb-14 max-w-2xl">
             <Reveal>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl leading-[1.05] mb-5">
-                Watch it <em className="italic text-neutral-400">work.</em>
+                See it <em className="italic text-neutral-400">running.</em>
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
-                Both clips are edited for length. They&apos;re demos of the
-                interfaces, not latency benchmarks.
+                The controller workbench and the worker dashboard, on real
+                machines with real jobs.
               </p>
             </Reveal>
           </div>
 
           <div className="grid gap-10 lg:grid-cols-2">
-            {demos.map((demo, i) => (
-              <Reveal key={demo.src} delay={i * 100}>
-                <figure>
-                  <div className="overflow-hidden rounded-xl border border-white/[0.08] bg-black/40">
-                    <video
-                      controls
-                      playsInline
-                      preload="metadata"
-                      poster={demo.poster}
-                      className="aspect-video w-full"
-                    >
-                      <source src={demo.src} type="video/mp4" />
-                    </video>
-                  </div>
-                  <figcaption className="mt-3">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#c8f542]">
-                      {demo.label}
-                    </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-neutral-400">
-                      {demo.caption}
-                    </span>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-2">
             {screenshots.map((shot, i) => (
               <Reveal key={shot.src} delay={i * 100}>
                 <figure>
@@ -362,7 +295,7 @@ export default function SparehourPage() {
                       src={shot.src}
                       alt={shot.alt}
                       width={1800}
-                      height={1350}
+                      height={1500}
                       className="h-auto w-full"
                     />
                   </div>
@@ -552,7 +485,7 @@ export default function SparehourPage() {
                     rel="noopener noreferrer"
                     className="font-display text-2xl md:text-3xl hover:text-[#c8f542] transition-colors"
                   >
-                    distributed-gpu
+                    sparehour
                   </Link>
                   <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[#c8f542]">
                     GPL-3.0-or-later
@@ -568,7 +501,7 @@ export default function SparehourPage() {
                     rel="noopener noreferrer"
                     className="font-display text-2xl md:text-3xl hover:text-[#c8f542] transition-colors"
                   >
-                    dworker
+                    sparehour-worker
                   </Link>
                   <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[#c8f542]">
                     MIT

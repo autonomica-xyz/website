@@ -8,6 +8,17 @@ const nextConfig = {
     return [
       { source: "/distributed-gpu", destination: "/sparehour", permanent: true },
       { source: "/moonshift", destination: "/sparehour", permanent: true },
+      // Inbound links to the pre-rename screenshot assets keep working.
+      {
+        source: "/distributed-gpu/screenshots/controller-dashboard.png",
+        destination: "/sparehour/screenshots/controller-dashboard.png",
+        permanent: true,
+      },
+      {
+        source: "/distributed-gpu/screenshots/worker-dashboard.png",
+        destination: "/sparehour/screenshots/worker-dashboard.png",
+        permanent: true,
+      },
     ]
   },
   images: {

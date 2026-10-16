@@ -60,9 +60,56 @@ Tools we build as we need them. While building our autonomous company, we create
 - [Mission](/mission)
 - [Systems](/systems)
 - [Blog](/blog)
+- [Sparehour](/sparehour)
 - [GitHub](https://github.com/autonomica-xyz)
+- [Sparehour (controller)](https://github.com/autonomica-xyz/sparehour)
+- [Sparehour Worker](https://github.com/autonomica-xyz/sparehour-worker)
 `
 }
+function getSparehourPage(): string {
+  return `# Sparehour — Autonomica
+
+> A self-hosted job queue for your own and rented GPUs, plus the worker that lends them. Your GPUs' spare hours, put to work.
+
+Sparehour is two pieces: the controller ([sparehour](https://github.com/autonomica-xyz/sparehour), GPL-3.0-or-later) and the worker that lends a machine's capacity ([sparehour-worker](https://github.com/autonomica-xyz/sparehour-worker), MIT). Self-hosted — your machines, rented ones, or both.
+
+## Bundled routes
+
+- **image-generate** — SDXL images (NVIDIA)
+- **llm-batch** — Qwen prompt batches on vLLM (NVIDIA)
+- **transcribe** — Parakeet or WhisperX, with timestamps and optional speaker labels (NVIDIA)
+- **translate-batch / translate-segment / translate-text-batch** — translation via Argos or LibreTranslate (NVIDIA)
+
+You can add your own job types, including plain CPU work.
+
+## Trust boundaries
+
+- Workers fetch a job's input only while they hold that job.
+- Provider keys for rented GPUs stay on the controller and never reach a worker.
+- Jobs carry data, not code; what runs comes from route definitions on the controller.
+- Every bundled model is pinned to an exact snapshot and checked file by file against SHA-256 hashes before it loads.
+
+## Limits
+
+- Not for training; doesn't split one model across GPUs. One GPU runs one job.
+- Bundled ML routes target NVIDIA today. AMD and CPU machines work with jobs you set up yourself.
+- No PyPI package; install is from source for now.
+
+## Getting started
+
+1. Clone both repos (Python 3.10+).
+2. \`pip install\` both packages into one venv; provision model weights separately.
+3. \`sparehour serve\` starts the controller queue and workbench at /dashboard; \`sparehour token\` issues a scoped token.
+4. \`sparehour-worker login\`, \`sparehour-worker doctor\`, \`sparehour-worker select\`, \`sparehour-worker run\` enlists a worker.
+
+## Links
+
+- [Product page](/sparehour)
+- [sparehour on GitHub](https://github.com/autonomica-xyz/sparehour)
+- [sparehour-worker on GitHub](https://github.com/autonomica-xyz/sparehour-worker)
+`
+}
+
 
 function getMissionPage(): string {
   return `# Mission — Autonomica
@@ -228,6 +275,8 @@ export async function GET(
       return mdResponse(getSystemsPage())
     case "blog":
       return mdResponse(getBlogIndexPage())
+    case "sparehour":
+      return mdResponse(getSparehourPage())
     default: {
       // Handle blog posts: blog/{slug}
       if (segments[0] === "blog" && segments.length === 2) {
