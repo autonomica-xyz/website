@@ -6,7 +6,8 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      { source: "/distributed-gpu", destination: "/moonshift", permanent: true },
+      { source: "/distributed-gpu", destination: "/sparehour", permanent: true },
+      { source: "/moonshift", destination: "/sparehour", permanent: true },
     ]
   },
   images: {
