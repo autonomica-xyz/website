@@ -40,6 +40,12 @@ export default function SiteFooter() {
               Blog
             </Link>
             <Link
+              href="/sparehour"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#b4bac4] transition-colors hover:text-[#ece8df]"
+            >
+              Sparehour
+            </Link>
+            <Link
               href="https://github.com/autonomica-xyz"
               target="_blank"
               rel="noopener noreferrer"

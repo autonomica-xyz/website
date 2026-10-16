@@ -7,6 +7,7 @@ import NavButton from "@/components/nav-button"
 const defaultLinks = [
   { href: "/mission", label: "Mission" },
   { href: "/systems", label: "Systems" },
+  { href: "/sparehour", label: "Sparehour" },
   { href: "/blog", label: "Blog" },
   { href: "https://github.com/autonomica-xyz", label: "Code", external: true },
 ] as const
