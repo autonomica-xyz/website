@@ -66,6 +66,7 @@ Tools we build as we need them. While building our autonomous company, we create
 - [Sparehour (controller)](https://github.com/autonomica-xyz/sparehour)
 - [Sparehour Worker](https://github.com/autonomica-xyz/sparehour-worker)
 - [Hench](https://github.com/autonomica-xyz/hench)
+- [hench-cli](https://github.com/autonomica-xyz/hench-cli)
 - [hench-web](https://github.com/autonomica-xyz/hench-web)
 `
 }
@@ -134,58 +135,67 @@ You can add your own job types, including plain CPU work.
 function getHenchPage(): string {
   return `# Hench — Autonomica
 
-> Hench turns a spare Android phone into a worker that AI agents can hire and pay in sats, per job, over Nostr.
+> Open source (MIT).
 
 Hench is a worker app for a spare Android phone. Switch it on and it announces itself on Nostr relays. An AI agent asks for a job, Hench quotes a price in sats, the agent pays a Lightning invoice, and the phone does the work.
 
-Everything runs on the phone. No server to rent, no account to create. For the side sending jobs, hench-web is a single browser page that finds workers and handles payment.
+Everything runs on the device. No server to rent, no account to create. Prefer a computer? hench-cli runs the same worker on a desktop. For the side sending jobs, hench-web is a single browser page that finds workers and handles payment.
 
 ## How it works
 
-1. **Turn the worker on** — One button. Hench announces itself on Nostr relays and starts listening for jobs.
+1. **Turn the worker on** — One button on the phone, or one switch in the desktop dashboard. Hench announces itself on Nostr relays and starts listening for jobs.
 2. **A client asks for a job** — Usually an AI agent. Hench checks the request and quotes a price in sats.
 3. **They pay, the phone works** — Hench creates a Lightning invoice. After it settles, Hench runs the job, uploads the result to a Blossom server and sends back the link.
 
-## The worker app
+## The phone app
 
-- Runs as a foreground service on an arm64 Android phone (Android 7.0, API 24, or newer).
+- Runs as a foreground service on Android 7.0 (API 24) or newer. Verified on arm64 devices.
 - A dashboard shows worker on/off, sats earned, jobs executed and the latest job's status.
 - Built-in job: media downloads, with yt-dlp bundled on the phone.
 - Add your own paid tools: a small manifest and one Python script. Scripts get full app access, so install only ones you trust.
 - Set a base price per job, per-hour rates for audio and video, and the hours the worker takes jobs.
 
+## The desktop worker
+
+- The same worker for any computer, written in Rust. Hench clients find it the same way they find phones.
+- Offers the media download job, using yt-dlp and ffmpeg installed on the machine.
+- Paid through your own Lightning wallet over Nostr Wallet Connect (NWC).
+- A local web dashboard on 127.0.0.1:8932 for prices, hours, relays and the worker switch. Binding it to another address requires a token.
+- Settings are saved to a private file and take effect on save.
+
 ## The client
 
-- A static page with no build step. Serve it locally with python3 -m http.server.
+- A static page with no build step. Its libraries are bundled in the repo, so nothing loads from a CDN.
 - Finds Hench workers from their Nostr announcements, with their tools and prices in sats.
-- Builds a form from each tool's input schema.
+- Checks the signature on every worker announcement and reply, so a forged invoice can't redirect your payment.
 - Shows a QR code and a lightning: link for the invoice, then streams progress and the result.
 
 ## Payments
 
 - **Pay, then work** — A job runs only after its Lightning invoice settles.
-- **No double charging** — The payment record is saved before the invoice is created. A crash can't produce a second invoice, and repeating a finished call returns the saved result.
+- **No double charging** — The payment record is saved before the invoice is created. If it can't be saved, no invoice is issued. Repeating a finished call returns the saved result without a new charge.
 - **Checked before invoicing** — Download links that resolve to the phone itself or to private network addresses are refused before any invoice is created.
-- **Your wallet** — Earnings settle to a built-in Breez Spark wallet. Back up its 12 recovery words, or connect your own wallet over NWC.
+- **Your wallet** — On the phone, earnings settle to a built-in Breez Spark wallet (back up its 12 recovery words) or your own wallet over NWC. On a desktop, they settle to whatever wallet your NWC link points at.
 
 ## What it isn't
 
 - Not on an app store yet. There is no published APK; build from source.
-- Building needs JDK 17, the Android SDK (API 36) and your own Breez Spark API key.
-- arm64 Android phones only.
+- Building the phone app needs JDK 17+, the Android SDK (API 37), the native libraries built from the repo's native-* folders, and your own Breez Spark API key.
+- hench-cli is built from source with the Rust toolchain. There are no prebuilt binaries yet.
 - Not a hosted service. You run the worker; results are delivered as links on Blossom servers.
 
 ## Try it
 
-1. Clone hench. You need JDK 17 and the Android SDK (API 36).
-2. Add your Breez key. Put BREEZ_API_KEY=your-key in a breez.txt file at the repo root. It is gitignored.
-3. Build. ./gradlew assembleRelease, then install the APK on an arm64 Android phone.
-4. Turn it on. Tap Create wallet & turn worker on, then back up the 12 recovery words in Settings → Wallet first.
+1. **Phone: build hench** — Build the native libraries, add your own Breez key in breez.txt, then ./gradlew assembleRelease.
+2. **Phone: open the app** — First launch creates the wallet and turns the worker on. Back up the 12 recovery words in Settings → Wallet first.
+3. **Desktop: run hench-cli** — Install Rust, yt-dlp and ffmpeg, set HENCH_NWC_URI to your wallet's NWC link, then cargo run --release.
+4. **Desktop: switch it on** — Open http://127.0.0.1:8932, check prices and hours, and flip the worker on.
 
 ## Links
 
 - [Product page](/hench)
 - [hench](https://github.com/autonomica-xyz/hench)
+- [hench-cli](https://github.com/autonomica-xyz/hench-cli)
 - [hench-web](https://github.com/autonomica-xyz/hench-web)
 `
 }

@@ -459,10 +459,10 @@ export default function Home() {
                 <div>
                   <div className="mb-4 flex flex-wrap items-center gap-3">
                     <span className="rounded-full border border-[rgba(200,245,66,0.35)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[#c8f542]">
-                      worker app
+                      open source · mit
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#b4bac4]">
-                      android · nostr · lightning
+                      android · desktop · nostr · lightning
                     </span>
                   </div>
                   <h2 className="mb-3.5 font-display text-[clamp(2rem,3.5vw,2.85rem)] font-normal leading-[1.08]">
@@ -471,9 +471,10 @@ export default function Home() {
                     <em className="italic text-[#c8f542]">works for agents</em>.
                   </h2>
                   <p className="mb-7 max-w-xl text-[1.02rem] leading-[1.7] text-[#b4bac4]">
-                    A spare Android phone becomes a worker that AI agents can
-                    hire. They pay a Lightning invoice in sats, and the phone
-                    does the job. No server to rent, no account to create.
+                    A spare Android phone or a desktop becomes a worker that AI
+                    agents can hire. They pay a Lightning invoice in sats, and
+                    the worker does the job. No server to rent, no account to
+                    create.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <NavButton
@@ -521,7 +522,13 @@ export default function Home() {
                       <div className="rounded-md border border-white/[0.08] bg-black/25 px-3 py-2.5">
                         <div className="font-mono text-xs">hench</div>
                         <div className="mt-0.5 text-xs text-[#b4bac4]">
-                          The worker app: runs on the phone, earns sats
+                          The phone app: runs on the phone, earns sats
+                        </div>
+                      </div>
+                      <div className="rounded-md border border-white/[0.08] bg-black/25 px-3 py-2.5">
+                        <div className="font-mono text-xs">hench-cli</div>
+                        <div className="mt-0.5 text-xs text-[#b4bac4]">
+                          The desktop worker: same jobs, your own wallet
                         </div>
                       </div>
                       <div className="rounded-md border border-white/[0.08] bg-black/25 px-3 py-2.5">

@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 }
 
 const REPO_APP = "https://github.com/autonomica-xyz/hench"
+const REPO_CLI = "https://github.com/autonomica-xyz/hench-cli"
 const REPO_WEB = "https://github.com/autonomica-xyz/hench-web"
 
 
@@ -42,7 +43,7 @@ const flow = [
   {
     n: "01",
     title: "Turn the worker on",
-    desc: "One button. Hench announces itself on Nostr relays and starts listening for jobs.",
+    desc: "One button on the phone, or one switch in the desktop dashboard. Hench announces itself on Nostr relays and starts listening for jobs.",
   },
   {
     n: "02",
@@ -63,7 +64,7 @@ const payments = [
   },
   {
     label: "No double charging",
-    desc: "The payment record is saved before the invoice is created. A crash can't produce a second invoice, and repeating a finished call returns the saved result.",
+    desc: "The payment record is saved before the invoice is created. If it can't be saved, no invoice is issued. Repeating a finished call returns the saved result without a new charge.",
   },
   {
     label: "Checked before invoicing",
@@ -71,37 +72,37 @@ const payments = [
   },
   {
     label: "Your wallet",
-    desc: "Earnings settle to a built-in Breez Spark wallet. Back up its 12 recovery words, or connect your own wallet over NWC.",
+    desc: "On the phone, earnings settle to a built-in Breez Spark wallet (back up its 12 recovery words) or your own wallet over NWC. On a desktop, they settle to whatever wallet your NWC link points at.",
   },
 ]
 
 const limits = [
   "Not on an app store yet. There is no published APK; build from source.",
-  "Building needs JDK 17, the Android SDK (API 36) and your own Breez Spark API key.",
-  "arm64 Android phones only.",
+  "Building the phone app needs JDK 17+, the Android SDK (API 37), the native libraries built from the repo's native-* folders, and your own Breez Spark API key.",
+  "hench-cli is built from source with the Rust toolchain. There are no prebuilt binaries yet.",
   "Not a hosted service. You run the worker; results are delivered as links on Blossom servers.",
 ]
 
 const steps = [
   {
     n: "01",
-    title: "Clone hench",
-    desc: "You need JDK 17 and the Android SDK (API 36).",
+    title: "Phone: build hench",
+    desc: "Build the native libraries, add your own Breez key in breez.txt, then ./gradlew assembleRelease.",
   },
   {
     n: "02",
-    title: "Add your Breez key",
-    desc: "Put BREEZ_API_KEY=your-key in a breez.txt file at the repo root. It is gitignored.",
+    title: "Phone: open the app",
+    desc: "First launch creates the wallet and turns the worker on. Back up the 12 recovery words in Settings → Wallet first.",
   },
   {
     n: "03",
-    title: "Build",
-    desc: "./gradlew assembleRelease, then install the APK on an arm64 Android phone.",
+    title: "Desktop: run hench-cli",
+    desc: "Install Rust, yt-dlp and ffmpeg, set HENCH_NWC_URI to your wallet's NWC link, then cargo run --release.",
   },
   {
     n: "04",
-    title: "Turn it on",
-    desc: "Tap Create wallet & turn worker on, then back up the 12 recovery words in Settings → Wallet first.",
+    title: "Desktop: switch it on",
+    desc: "Open http://127.0.0.1:8932, check prices and hours, and flip the worker on.",
   },
 ]
 
@@ -124,7 +125,7 @@ export default function HenchPage() {
       <section className="relative z-10 pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="container mx-auto px-4">
           <Reveal>
-            <SectionLabel number="04" label="Worker app" />
+            <SectionLabel number="04" label="Open source · MIT" />
           </Reveal>
 
           <div className="max-w-3xl">
@@ -147,8 +148,9 @@ export default function HenchPage() {
             </Reveal>
             <Reveal delay={200}>
               <p className="text-neutral-300 text-lg md:text-xl leading-relaxed mb-10">
-                Everything runs on the phone. No server to rent, no account to
-                create. For the side sending jobs, hench-web is a single
+                Everything runs on the device. No server to rent, no account to
+                create. Prefer a computer? hench-cli runs the same worker on a
+                desktop. For the side sending jobs, hench-web is a single
                 browser page that finds workers and handles payment.
               </p>
             </Reveal>
@@ -171,6 +173,16 @@ export default function HenchPage() {
                   href={REPO_WEB}
                 >
                   hench-web
+                  <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
+                </NavButton>
+                <NavButton
+                  eventName="hench_cli_repo_click"
+                  eventCategory="navigation"
+                  variant="outline"
+                  className="h-auto rounded border-white/10 bg-transparent px-[18px] py-3 font-mono text-xs font-medium uppercase tracking-[0.08em] text-[#ece8df] hover:bg-white/[0.03]"
+                  href={REPO_CLI}
+                >
+                  hench-cli
                   <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
                 </NavButton>
               </div>
@@ -223,31 +235,32 @@ export default function HenchPage() {
           <div className="mb-14 max-w-2xl">
             <Reveal>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl leading-[1.05] mb-5">
-                Two programs,
+                Three programs,
                 <br />
                 <em className="italic text-neutral-400">one job.</em>
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
-                The app is the worker. hench-web is one way to send it jobs.
+                The phone app and the desktop worker do the jobs. hench-web is
+                one way to send them.
               </p>
             </Reveal>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
-            {/* Worker app */}
+          <div className="grid gap-6 lg:grid-cols-3">
+            {/* Phone app */}
             <Reveal>
               <div className="h-full rounded-xl border border-white/[0.08] bg-white/[0.02] p-7 md:p-9">
                 <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[#c8f542]">
-                  The worker app
+                  The phone app
                 </div>
                 <h3 className="font-display text-2xl md:text-3xl mb-6">
                   hench
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Runs as a foreground service on an arm64 Android phone (Android 7.0, API 24, or newer).",
+                    "Runs as a foreground service on Android 7.0 (API 24) or newer. Verified on arm64 devices.",
                     "A dashboard shows worker on/off, sats earned, jobs executed and the latest job's status.",
                     "Built-in job: media downloads, with yt-dlp bundled on the phone.",
                     "Add your own paid tools: a small manifest and one Python script. Scripts get full app access, so install only ones you trust.",
@@ -264,8 +277,36 @@ export default function HenchPage() {
               </div>
             </Reveal>
 
-            {/* Client */}
+            {/* Desktop worker */}
             <Reveal delay={100}>
+              <div className="h-full rounded-xl border border-white/[0.08] bg-white/[0.02] p-7 md:p-9">
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[#c8f542]">
+                  The desktop worker
+                </div>
+                <h3 className="font-display text-2xl md:text-3xl mb-6">
+                  hench-cli
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    "The same worker for any computer, written in Rust. Hench clients find it the same way they find phones.",
+                    "Offers the media download job, using yt-dlp and ffmpeg installed on the machine.",
+                    "Paid through your own Lightning wallet over Nostr Wallet Connect (NWC).",
+                    "A local web dashboard on 127.0.0.1:8932 for prices, hours, relays and the worker switch. Binding it to another address requires a token.",
+                    "Settings are saved to a private file and take effect on save.",
+                  ].map((line) => (
+                    <li key={line} className="flex gap-3">
+                      <span className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-[#c8f542]" />
+                      <span className="text-neutral-300 leading-relaxed">
+                        {line}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+
+            {/* Client */}
+            <Reveal delay={200}>
               <div className="h-full rounded-xl border border-white/[0.08] bg-white/[0.02] p-7 md:p-9">
                 <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[#c8f542]">
                   The client
@@ -275,9 +316,9 @@ export default function HenchPage() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "A static page with no build step. Serve it locally with python3 -m http.server.",
+                    "A static page with no build step. Its libraries are bundled in the repo, so nothing loads from a CDN.",
                     "Finds Hench workers from their Nostr announcements, with their tools and prices in sats.",
-                    "Builds a form from each tool's input schema.",
+                    "Checks the signature on every worker announcement and reply, so a forged invoice can't redirect your payment.",
                     "Shows a QR code and a lightning: link for the invoice, then streams progress and the result.",
                   ].map((line) => (
                     <li key={line} className="flex gap-3">
@@ -400,15 +441,14 @@ export default function HenchPage() {
           <div className="mb-14 max-w-2xl">
             <Reveal>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl leading-[1.05] mb-5">
-                Build it,
+                Run a worker,
                 <br />
-                <em className="italic text-neutral-400">switch it on.</em>
+                <em className="italic text-neutral-400">on a phone or a desktop.</em>
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
-                Four steps from clone to a live worker. The README has the
-                details.
+                The READMEs have the details.
               </p>
             </Reveal>
           </div>
@@ -440,10 +480,10 @@ export default function HenchPage() {
         <div className="container mx-auto px-4">
           <Reveal>
             <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-7 md:p-10">
-              <div className="grid gap-8 md:grid-cols-2">
+              <div className="grid gap-8 md:grid-cols-3">
                 <div>
                   <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-neutral-500">
-                    Worker app
+                    Phone app
                   </div>
                   <Link
                     href={REPO_APP}
@@ -454,7 +494,23 @@ export default function HenchPage() {
                     hench
                   </Link>
                   <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[#c8f542]">
-                    Android · Kotlin
+                    Android · Kotlin · MIT
+                  </p>
+                </div>
+                <div>
+                  <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-neutral-500">
+                    Desktop worker
+                  </div>
+                  <Link
+                    href={REPO_CLI}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-display text-2xl md:text-3xl hover:text-[#c8f542] transition-colors"
+                  >
+                    hench-cli
+                  </Link>
+                  <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[#c8f542]">
+                    Rust · MIT
                   </p>
                 </div>
                 <div>
@@ -470,7 +526,7 @@ export default function HenchPage() {
                     hench-web
                   </Link>
                   <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[#c8f542]">
-                    Static web page
+                    Static web page · MIT
                   </p>
                 </div>
               </div>
