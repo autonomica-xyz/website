@@ -10,6 +10,7 @@ Autonomica ships production agents and systems — custom agent creation and dep
 - [Mission](https://autonomica.xyz/mission): Legacy deep dive on pillars and mission framing.
 - [Systems](https://autonomica.xyz/systems): Legacy product/systems detail.
 - [Sparehour](https://autonomica.xyz/sparehour): Open-source, self-hosted queue for batch AI jobs across your own machines and rented GPUs (controller: sparehour, GPL-3.0; worker: sparehour-worker, MIT).
+- [Hench](https://autonomica.xyz/hench): Open-source (MIT) worker that AI agents can hire and pay in sats, per job, over Nostr: Android app (hench), desktop worker (hench-cli) and browser client (hench-web).
 
 ## Markdown Versions
 
@@ -19,6 +20,7 @@ Append `.md` to any page URL to get a markdown version:
 - [Mission](https://autonomica.xyz/mission.md)
 - [Systems](https://autonomica.xyz/systems.md)
 - [Sparehour](https://autonomica.xyz/sparehour.md)
+- [Hench](https://autonomica.xyz/hench.md)
 - [Blog](https://autonomica.xyz/blog.md)
 - [Blog posts](https://autonomica.xyz/blog/{slug}.md)
 
@@ -41,3 +43,6 @@ Append `.md` to any page URL to get a markdown version:
 - GitHub: https://github.com/autonomica-xyz
 - [Sparehour (controller)](https://github.com/autonomica-xyz/sparehour)
 - [Sparehour Worker](https://github.com/autonomica-xyz/sparehour-worker)
+- [Hench](https://github.com/autonomica-xyz/hench)
+- [hench-cli](https://github.com/autonomica-xyz/hench-cli)
+- [hench-web](https://github.com/autonomica-xyz/hench-web)

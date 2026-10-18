@@ -8,6 +8,7 @@ const defaultLinks = [
   { href: "/mission", label: "Mission" },
   { href: "/systems", label: "Systems" },
   { href: "/sparehour", label: "Sparehour" },
+  { href: "/hench", label: "Hench" },
   { href: "/blog", label: "Blog" },
   { href: "https://github.com/autonomica-xyz", label: "Code", external: true },
 ] as const
