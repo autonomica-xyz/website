@@ -61,9 +61,12 @@ Tools we build as we need them. While building our autonomous company, we create
 - [Systems](/systems)
 - [Blog](/blog)
 - [Sparehour](/sparehour)
+- [Hench](/hench)
 - [GitHub](https://github.com/autonomica-xyz)
 - [Sparehour (controller)](https://github.com/autonomica-xyz/sparehour)
 - [Sparehour Worker](https://github.com/autonomica-xyz/sparehour-worker)
+- [Hench](https://github.com/autonomica-xyz/hench)
+- [hench-web](https://github.com/autonomica-xyz/hench-web)
 `
 }
 function getSparehourPage(): string {
@@ -125,6 +128,65 @@ You can add your own job types, including plain CPU work.
 - [Product page](/sparehour)
 - [Sparehour controller](https://github.com/autonomica-xyz/sparehour) — GPL-3.0-or-later
 - [Sparehour Worker](https://github.com/autonomica-xyz/sparehour-worker) — MIT
+`
+}
+
+function getHenchPage(): string {
+  return `# Hench — Autonomica
+
+> Hench turns a spare Android phone into a worker that AI agents can hire and pay in sats, per job, over Nostr.
+
+Hench is a worker app for a spare Android phone. Switch it on and it announces itself on Nostr relays. An AI agent asks for a job, Hench quotes a price in sats, the agent pays a Lightning invoice, and the phone does the work.
+
+Everything runs on the phone. No server to rent, no account to create. For the side sending jobs, hench-web is a single browser page that finds workers and handles payment.
+
+## How it works
+
+1. **Turn the worker on** — One button. Hench announces itself on Nostr relays and starts listening for jobs.
+2. **A client asks for a job** — Usually an AI agent. Hench checks the request and quotes a price in sats.
+3. **They pay, the phone works** — Hench creates a Lightning invoice. After it settles, Hench runs the job, uploads the result to a Blossom server and sends back the link.
+
+## The worker app
+
+- Runs as a foreground service on an arm64 Android phone (Android 7.0, API 24, or newer).
+- A dashboard shows worker on/off, sats earned, jobs executed and the latest job's status.
+- Built-in job: media downloads, with yt-dlp bundled on the phone.
+- Add your own paid tools: a small manifest and one Python script. Scripts get full app access, so install only ones you trust.
+- Set a base price per job, per-hour rates for audio and video, and the hours the worker takes jobs.
+
+## The client
+
+- A static page with no build step. Serve it locally with python3 -m http.server.
+- Finds Hench workers from their Nostr announcements, with their tools and prices in sats.
+- Builds a form from each tool's input schema.
+- Shows a QR code and a lightning: link for the invoice, then streams progress and the result.
+
+## Payments
+
+- **Pay, then work** — A job runs only after its Lightning invoice settles.
+- **No double charging** — The payment record is saved before the invoice is created. A crash can't produce a second invoice, and repeating a finished call returns the saved result.
+- **Checked before invoicing** — Download links that resolve to the phone itself or to private network addresses are refused before any invoice is created.
+- **Your wallet** — Earnings settle to a built-in Breez Spark wallet. Back up its 12 recovery words, or connect your own wallet over NWC.
+
+## What it isn't
+
+- Not on an app store yet. There is no published APK; build from source.
+- Building needs JDK 17, the Android SDK (API 36) and your own Breez Spark API key.
+- arm64 Android phones only.
+- Not a hosted service. You run the worker; results are delivered as links on Blossom servers.
+
+## Try it
+
+1. Clone hench. You need JDK 17 and the Android SDK (API 36).
+2. Add your Breez key. Put BREEZ_API_KEY=your-key in a breez.txt file at the repo root. It is gitignored.
+3. Build. ./gradlew assembleRelease, then install the APK on an arm64 Android phone.
+4. Turn it on. Tap Create wallet & turn worker on, then back up the 12 recovery words in Settings → Wallet first.
+
+## Links
+
+- [Product page](/hench)
+- [hench](https://github.com/autonomica-xyz/hench)
+- [hench-web](https://github.com/autonomica-xyz/hench-web)
 `
 }
 
@@ -295,6 +357,8 @@ export async function GET(
       return mdResponse(getBlogIndexPage())
     case "sparehour":
       return mdResponse(getSparehourPage())
+    case "hench":
+      return mdResponse(getHenchPage())
     default: {
       // Handle blog posts: blog/{slug}
       if (segments[0] === "blog" && segments.length === 2) {
