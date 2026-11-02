@@ -1,10 +1,4 @@
-"use server"
-
-import { submitLead } from "@leads/supabase-backend"
-import { revalidatePath } from "next/cache"
-
-const supabaseUrl = process.env.LEADS_SUPABASE_URL!
-const supabaseKey = process.env.LEADS_SUPABASE_ANON_KEY!
+import { submitLead } from "@/lib/leads"
 
 export async function subscribeToNewsletter(formData: FormData) {
   const email = formData.get("email") as string
@@ -17,7 +11,7 @@ export async function subscribeToNewsletter(formData: FormData) {
   }
 
   try {
-    const result = await submitLead(supabaseUrl, supabaseKey, {
+    const result = await submitLead({
       siteId: "autonomica",
       contactValue: email,
     })
@@ -26,7 +20,6 @@ export async function subscribeToNewsletter(formData: FormData) {
       throw new Error(result.message)
     }
 
-    revalidatePath("/")
     return {
       success: true,
       message:

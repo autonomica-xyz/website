@@ -1,10 +1,4 @@
-"use server"
-
-import { submitLead } from "@leads/supabase-backend"
-import { revalidatePath } from "next/cache"
-
-const supabaseUrl = process.env.LEADS_SUPABASE_URL!
-const supabaseKey = process.env.LEADS_SUPABASE_ANON_KEY!
+import { submitLead } from "@/lib/leads"
 
 export async function submitContact(formData: FormData) {
   const email = String(formData.get("email") ?? "").trim()
@@ -30,7 +24,7 @@ export async function submitContact(formData: FormData) {
   }
 
   try {
-    const result = await submitLead(supabaseUrl, supabaseKey, {
+    const result = await submitLead({
       siteId: "autonomica",
       contactType: "email",
       contactValue: email,
@@ -48,7 +42,6 @@ export async function submitContact(formData: FormData) {
       throw new Error(result.message)
     }
 
-    revalidatePath("/")
     return {
       success: true,
       message:
